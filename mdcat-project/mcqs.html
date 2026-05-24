@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCQs — Medverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Crimson+Pro:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* MCQ Cards */
+.mcq-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.mcq-card:hover {
+  border-color: rgba(139,92,246,0.3);
+  box-shadow: 0 8px 30px rgba(139,92,246,0.08);
+}
+.mcq-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.mcq-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+.mcq-question {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+.mcq-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.mcq-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.75rem 1.1rem;
+  border-radius: 11px;
+  background: rgba(255,255,255,0.03);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  color: var(--text-primary);
+  font-size: 0.88rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+}
+.mcq-option:hover:not(:disabled) {
+  border-color: rgba(139,92,246,0.4);
+  background: rgba(139,92,246,0.07);
+  transform: translateX(3px);
+}
+.mcq-option.correct {
+  border-color: #4ade80;
+  background: rgba(34,197,94,0.1);
+  color: #4ade80;
+}
+.mcq-option.wrong {
+  border-color: #f43f5e;
+  background: rgba(244,63,94,0.1);
+  color: #f43f5e;
+}
+.mcq-option:disabled { cursor: not-allowed; }
+.mcq-explanation {
+  display: none;
+  background: rgba(34,197,94,0.07);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: #86efac;
+  line-height: 1.7;
+}
+.mcq-explanation.show { display: block; }
+.mcq-explanation strong { color: #4ade80; display: block; margin-bottom: 4px; }
+
+/* Score bar */
+.mcq-score-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.mcq-score-bar span {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.mcq-score-bar strong {
+  color: var(--text-primary);
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+}
+.mcq-reset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0.5rem 1.2rem;
+  border-radius: 9px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: 'DM Sans', sans-serif;
+}
+.mcq-reset-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+.filter-btn {
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+.filter-btn.active {
+  background: var(--gradient-main);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 16px var(--glow-purple);
+}
+
+/* Free test CTA strip */
+.mcq-cta-strip {
+  background: linear-gradient(135deg, rgba(139,92,246,0.15) 0%, rgba(6,182,212,0.1) 100%);
+  border: 1px solid rgba(139,92,246,0.25);
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+.mcq-cta-strip-text h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+.mcq-cta-strip-text p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+</style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">Medverse<span>your dream · our mission</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="test-series.html">Test Series</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="mcqs.html" class="nav-active">MCQs</a></li>
+      <li><a href="past-papers.html">Past Papers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-search"><i class="fas fa-search"></i></button>
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="courses.html">Courses</a>
+  <a href="test-series.html">Test Series</a><a href="notes.html">Notes</a>
+  <a href="mcqs.html">MCQs</a><a href="past-papers.html">Past Papers</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About Us</a>
+  <div class="mobile-btns">
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label reveal">MCQ Practice</div>
+    <h1 class="page-hero-title reveal reveal-delay-1">MDCAT MCQ Bank</h1>
+    <p class="page-hero-sub reveal reveal-delay-2">30 MDCAT-style MCQs from Biology, Chemistry, Physics & English — click any option to instantly see the correct answer with explanation.</p>
+  </div>
+</section>
+
+<!-- MCQ SECTION -->
+<section class="section-pad" style="background:var(--navy)">
+  <div class="container">
+
+    <!-- Free Test CTA -->
+    <div class="mcq-cta-strip reveal">
+      <div class="mcq-cta-strip-text">
+        <h3>⚡ Want a Real Quiz Experience?</h3>
+        <p>Try our Free Test — one question at a time, timer, and final result score card!</p>
+      </div>
+      <a href="free-test.html" class="btn-primary">Take Free Test <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" onclick="filterMCQs('all',this)">All (30)</button>
+      <button class="filter-btn" onclick="filterMCQs('biology',this)">🧬 Biology (8)</button>
+      <button class="filter-btn" onclick="filterMCQs('chemistry',this)">⚗️ Chemistry (8)</button>
+      <button class="filter-btn" onclick="filterMCQs('physics',this)">⚛️ Physics (8)</button>
+      <button class="filter-btn" onclick="filterMCQs('english',this)">📖 English (6)</button>
+    </div>
+
+    <!-- Score bar -->
+    <div class="mcq-score-bar reveal">
+      <span>Score: <strong id="score-display">0</strong> / <strong id="total-display">0</strong> answered</span>
+      <button class="mcq-reset-btn" onclick="resetAll()"><i class="fas fa-redo"></i> Reset All</button>
+    </div>
+
+    <!-- MCQ List -->
+    <div id="mcq-list"></div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Medverse<span>your dream · our mission</span></div>
+      </a>
+      <p>Your trusted partner in MDCAT preparation.</p>
+            <div class="social-links">
+        <a href="https://www.facebook.com/share/14Y3RVJgNng/?mibextid=wwXIfr" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/medverse_pk?igsh=MTZ4ejdieGY4NzV5ZQ%3D%3D&utm_source=qr" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Medverse-team03232238602" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Quick Links</h4><ul>
+      <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Home</a></li>
+      <li><a href="courses.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Courses</a></li>
+      <li><a href="notes.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Notes</a></li>
+      <li><a href="past-papers.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Past Papers</a></li>
+      <li><a href="free-test.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Free Test</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Support</h4><ul>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">FAQs</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Newsletter</h4>
+      <p class="newsletter-desc">Subscribe for updates on new MCQs and MDCAT offers.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email">
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Medverse. All rights reserved.</p>
+    <p>Designed with ♥ for Pakistan's future doctors.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const mcqData = [
+  // BIOLOGY (8)
+  {id:1,sub:'biology',q:'The powerhouse of the cell is the:',opts:['Nucleus','Mitochondria','Ribosome','Golgi apparatus'],ans:1,exp:'Mitochondria produce ATP through cellular respiration — hence called the powerhouse of the cell.'},
+  {id:2,sub:'biology',q:'Which blood group is the universal donor?',opts:['A','B','AB','O'],ans:3,exp:'Blood group O negative lacks A, B, and Rh antigens, making it compatible with all blood groups.'},
+  {id:3,sub:'biology',q:'DNA replication occurs during which phase of the cell cycle?',opts:['G1 phase','S phase','G2 phase','M phase'],ans:1,exp:'DNA synthesis occurs during the S (Synthesis) phase of interphase.'},
+  {id:4,sub:'biology',q:'The functional and structural unit of the kidney is:',opts:['Neuron','Nephron','Alveolus','Villus'],ans:1,exp:'The nephron is the microscopic structural and functional unit of the kidney.'},
+  {id:5,sub:'biology',q:'Photosynthesis takes place in which organelle?',opts:['Mitochondria','Nucleus','Chloroplast','Ribosome'],ans:2,exp:'Chloroplasts contain chlorophyll and are the site of photosynthesis in plant cells.'},
+  {id:6,sub:'biology',q:'Which enzyme unwinds the DNA double helix?',opts:['DNA polymerase','Ligase','Helicase','Primase'],ans:2,exp:'Helicase breaks hydrogen bonds between base pairs to unwind and separate the DNA strands.'},
+  {id:7,sub:'biology',q:'Water loss through leaves is called:',opts:['Osmosis','Transpiration','Respiration','Diffusion'],ans:1,exp:'Transpiration is evaporation of water from plant surfaces, mainly through stomata.'},
+  {id:8,sub:'biology',q:'Which part of the brain controls balance and coordination?',opts:['Cerebrum','Cerebellum','Medulla oblongata','Hypothalamus'],ans:1,exp:'The cerebellum coordinates voluntary movements and maintains posture and balance.'},
+  // CHEMISTRY (8)
+  {id:9,sub:'chemistry',q:'pH of a neutral solution at 25°C is:',opts:['0','7','14','1'],ans:1,exp:'At 25°C, pure water has equal H⁺ and OH⁻ concentrations, giving pH = 7.'},
+  {id:10,sub:'chemistry',q:'Which of the following is a noble gas?',opts:['Nitrogen','Oxygen','Argon','Chlorine'],ans:2,exp:'Argon (Ar) is a noble gas in Group 18 with a complete outer electron shell.'},
+  {id:11,sub:'chemistry',q:'Moles in 18g of water (H₂O):',opts:['0.5','1','2','18'],ans:1,exp:'Molar mass of H₂O = 18 g/mol. So 18g ÷ 18 = 1 mole.'},
+  {id:12,sub:'chemistry',q:'Bond formed by sharing electron pairs:',opts:['Ionic','Covalent','Hydrogen','Metallic'],ans:1,exp:'Covalent bonds form when atoms share one or more pairs of electrons.'},
+  {id:13,sub:'chemistry',q:'Oxidation state of oxygen in H₂O₂:',opts:['-2','-1','0','+1'],ans:1,exp:'In hydrogen peroxide, oxygen has an unusual oxidation state of -1.'},
+  {id:14,sub:'chemistry',q:'Gas produced when Zn reacts with HCl:',opts:['Oxygen','CO₂','Hydrogen','Chlorine'],ans:2,exp:'Zn + 2HCl → ZnCl₂ + H₂↑. Hydrogen gas is released.'},
+  {id:15,sub:'chemistry',q:"Avogadro's number is approximately:",opts:['6.02×10²¹','6.02×10²³','6.02×10²⁵','3.01×10²³'],ans:1,exp:"Avogadro's number (6.022×10²³) is the number of particles in one mole of a substance."},
+  {id:16,sub:'chemistry',q:'IUPAC name of CH₃–CH₂–OH:',opts:['Methanol','Ethanol','Propanol','Butanol'],ans:1,exp:'CH₃–CH₂–OH has 2 carbons with –OH group = Ethanol.'},
+  // PHYSICS (8)
+  {id:17,sub:'physics',q:'SI unit of electric current:',opts:['Volt','Ohm','Ampere','Watt'],ans:2,exp:'The Ampere (A) is the SI base unit of electric current.'},
+  {id:18,sub:'physics',q:'F = ma represents Newton\'s:',opts:["1st Law","2nd Law","3rd Law",'Law of Gravitation'],ans:1,exp:"Newton's Second Law: Force = mass × acceleration (F = ma)."},
+  {id:19,sub:'physics',q:'Speed of light in vacuum:',opts:['3×10⁶ m/s','3×10⁸ m/s','3×10¹⁰ m/s','3×10⁴ m/s'],ans:1,exp:'Speed of light c ≈ 3×10⁸ m/s (approximately 300,000 km/s).'},
+  {id:20,sub:'physics',q:'Wave that does NOT require a medium:',opts:['Sound','Water','Electromagnetic','Seismic'],ans:2,exp:'Electromagnetic waves can travel through vacuum without requiring any medium.'},
+  {id:21,sub:'physics',q:'SI unit of electrical resistance:',opts:['Ampere','Volt','Ohm','Farad'],ans:2,exp:'The Ohm (Ω) is the SI unit of electrical resistance.'},
+  {id:22,sub:'physics',q:'Formula for kinetic energy:',opts:['mgh','mv','½mv²','Fd'],ans:2,exp:'KE = ½mv², where m is mass and v is velocity.'},
+  {id:23,sub:'physics',q:'Bending of waves around obstacles:',opts:['Reflection','Refraction','Diffraction','Dispersion'],ans:2,exp:'Diffraction is the bending and spreading of waves around obstacles or through openings.'},
+  {id:24,sub:'physics',q:'Half-life means:',opts:['All atoms decay','Half the atoms decay','One atom decays','Activity doubles'],ans:1,exp:'Half-life is the time for exactly half the radioactive nuclei to decay.'},
+  // ENGLISH (6)
+  {id:25,sub:'english',q:"Synonym of 'Benevolent':",opts:['Cruel','Kind','Angry','Lazy'],ans:1,exp:"Benevolent means well-meaning and kindly — synonym is 'Kind'."},
+  {id:26,sub:'english',q:"Antonym of 'Verbose':",opts:['Talkative','Wordy','Concise','Fluent'],ans:2,exp:"Verbose means using too many words. Antonym is 'Concise'."},
+  {id:27,sub:'english',q:"Meaning of 'Ephemeral':",opts:['Permanent','Short-lived','Very large','Bright'],ans:1,exp:'Ephemeral means lasting for a very short time.'},
+  {id:28,sub:'english',q:'Correct sentence:',opts:["She don't know","She doesn't knows","She doesn't know","She not know"],ans:2,exp:"With third-person singular, use 'doesn't' + base verb."},
+  {id:29,sub:'english',q:"Synonym of 'Ameliorate':",opts:['Worsen','Improve','Ignore','Destroy'],ans:1,exp:"Ameliorate means to make better — synonym is 'Improve'."},
+  {id:30,sub:'english',q:"Antonym of 'Loquacious':",opts:['Talkative','Garrulous','Taciturn','Verbose'],ans:2,exp:"Loquacious means very talkative. Antonym is 'Taciturn'."}
+];
+
+const subColors = {
+  biology:   {bg:'rgba(34,197,94,0.12)',  border:'rgba(34,197,94,0.3)',  color:'#4ade80'},
+  chemistry: {bg:'rgba(6,182,212,0.12)',  border:'rgba(6,182,212,0.3)',  color:'#67e8f9'},
+  physics:   {bg:'rgba(139,92,246,0.12)', border:'rgba(139,92,246,0.3)', color:'#a78bfa'},
+  english:   {bg:'rgba(245,158,11,0.12)', border:'rgba(245,158,11,0.3)', color:'#fbbf24'}
+};
+const letters = ['A','B','C','D'];
+let score = 0, totalAnswered = 0;
+let currentFilter = 'all';
+
+function renderMCQs(filter) {
+  currentFilter = filter;
+  const list = document.getElementById('mcq-list');
+  const data = filter === 'all' ? mcqData : mcqData.filter(m => m.sub === filter);
+  list.innerHTML = '';
+  data.forEach((m, idx) => {
+    const sc = subColors[m.sub];
+    const card = document.createElement('div');
+    card.className = 'mcq-card reveal';
+    card.id = 'card-' + m.id;
+    card.innerHTML = `
+      <div class="mcq-card-top">
+        <span class="mcq-num">Q${idx+1}</span>
+        <span style="background:${sc.bg};border:1px solid ${sc.border};color:${sc.color};padding:3px 12px;border-radius:50px;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;">${m.sub}</span>
+      </div>
+      <p class="mcq-question">${m.q}</p>
+      <div class="mcq-options" id="opts-${m.id}">
+        ${m.opts.map((o,i)=>`<button class="mcq-option" onclick="checkAns(${m.id},${i})">${letters[i]}. ${o}</button>`).join('')}
+      </div>
+      <div class="mcq-explanation" id="exp-${m.id}"><strong>✓ Correct Answer: ${letters[m.ans]}. ${m.opts[m.ans]}</strong>${m.exp}</div>
+    `;
+    list.appendChild(card);
+  });
+  updateScore();
+}
+
+function checkAns(id, selected) {
+  const m = mcqData.find(x => x.id === id);
+  const opts = document.querySelectorAll('#opts-' + id + ' .mcq-option');
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === m.ans) btn.classList.add('correct');
+    else if (i === selected) btn.classList.add('wrong');
+  });
+  document.getElementById('exp-' + id).classList.add('show');
+  if (selected === m.ans) score++;
+  totalAnswered++;
+  updateScore();
+}
+
+function updateScore() {
+  document.getElementById('score-display').textContent = score;
+  document.getElementById('total-display').textContent = totalAnswered;
+}
+
+function resetAll() {
+  score = 0; totalAnswered = 0;
+  renderMCQs(currentFilter);
+}
+
+function filterMCQs(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  score = 0; totalAnswered = 0;
+  renderMCQs(filter);
+}
+
+window.checkAns = checkAns;
+window.filterMCQs = filterMCQs;
+window.resetAll = resetAll;
+document.addEventListener('DOMContentLoaded', () => renderMCQs('all'));
+</script>
+</body>
+</html>
+
+
+
+
+

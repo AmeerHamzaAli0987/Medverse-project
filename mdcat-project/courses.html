@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses — Medverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Crimson+Pro:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">
+        Medverse<span>your dream · our mission</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html" class="nav-active">Courses</a></li>
+      <li><a href="#">Test Series</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="#">MCQs</a></li>
+      <li><a href="past-papers.html">Past Papers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-search"><i class="fas fa-search"></i></button>
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="#">Test Series</a>
+  <a href="notes.html">Notes</a>
+  <a href="#">MCQs</a>
+  <a href="past-papers.html">Past Papers</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About Us</a>
+  <div class="mobile-btns">
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label reveal">All Courses</div>
+    <h1 class="page-hero-title reveal reveal-delay-1">Master Every MDCAT Subject</h1>
+    <p class="page-hero-sub reveal reveal-delay-2">Expert-designed courses covering the complete PMC MDCAT syllabus — Biology, Chemistry, Physics, English and Logical Reasoning. Learn at your own pace.</p>
+  </div>
+</section>
+
+<!-- FILTER TABS -->
+<section class="courses-page-section section-pad">
+  <div class="container">
+
+    <div class="course-filters reveal">
+      <button class="filter-btn active" data-filter="all">All Courses</button>
+      <button class="filter-btn" data-filter="biology">Biology</button>
+      <button class="filter-btn" data-filter="chemistry">Chemistry</button>
+      <button class="filter-btn" data-filter="physics">Physics</button>
+      <button class="filter-btn" data-filter="english">English</button>
+      <button class="filter-btn" data-filter="bundle">Bundles</button>
+    </div>
+
+    <div class="courses-full-grid">
+
+      <!-- Biology -->
+      <div class="course-card-full reveal" data-cat="biology">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=600&q=80" alt="Biology">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 36 Lessons</div>
+          <div class="course-level-badge">Beginner → Advanced</div>
+        </div>
+        <div class="course-body">
+          <div class="course-subject-tag bio-tag">Biology</div>
+          <div class="course-title">Biology Full Course</div>
+          <div class="course-desc">Complete Biology preparation aligned with MDCAT syllabus — from cell biology to ecosystems, genetics, human physiology and more.</div>
+          <div class="course-meta-row">
+            <span><i class="fas fa-play-circle"></i> 36 Video Lectures</span>
+            <span><i class="fas fa-clock"></i> 42 Hours</span>
+            <span><i class="fas fa-users"></i> 3.2K Students</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">PKR 4,999</div>
+            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chemistry -->
+      <div class="course-card-full reveal reveal-delay-1" data-cat="chemistry">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80" alt="Chemistry">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 34 Lessons</div>
+          <div class="course-level-badge">Beginner → Advanced</div>
+        </div>
+        <div class="course-body">
+          <div class="course-subject-tag chem-tag">Chemistry</div>
+          <div class="course-title">Chemistry Full Course</div>
+          <div class="course-desc">Comprehensive organic, inorganic & physical chemistry for MDCAT mastery — all reactions, mechanisms and numerical problems solved.</div>
+          <div class="course-meta-row">
+            <span><i class="fas fa-play-circle"></i> 34 Video Lectures</span>
+            <span><i class="fas fa-clock"></i> 38 Hours</span>
+            <span><i class="fas fa-users"></i> 2.8K Students</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">PKR 4,999</div>
+            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physics -->
+      <div class="course-card-full reveal reveal-delay-2" data-cat="physics">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=600&q=80" alt="Physics">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 30 Lessons</div>
+          <div class="course-level-badge">Beginner → Advanced</div>
+        </div>
+        <div class="course-body">
+          <div class="course-subject-tag phy-tag">Physics</div>
+          <div class="course-title">Physics Full Course</div>
+          <div class="course-desc">Conceptual and numerical physics — mechanics, waves, thermodynamics, electromagnetism and modern physics, all MDCAT-ready.</div>
+          <div class="course-meta-row">
+            <span><i class="fas fa-play-circle"></i> 30 Video Lectures</span>
+            <span><i class="fas fa-clock"></i> 34 Hours</span>
+            <span><i class="fas fa-users"></i> 2.4K Students</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">PKR 4,999</div>
+            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- English -->
+      <div class="course-card-full reveal reveal-delay-3" data-cat="english">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&q=80" alt="English">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 18 Lessons</div>
+          <div class="course-level-badge">All Levels</div>
+        </div>
+        <div class="course-body">
+          <div class="course-subject-tag eng-tag">English</div>
+          <div class="course-title">English Complete Course</div>
+          <div class="course-desc">High-frequency vocabulary, synonyms, antonyms, sentence correction, reading comprehension — everything for MDCAT English section.</div>
+          <div class="course-meta-row">
+            <span><i class="fas fa-play-circle"></i> 18 Video Lectures</span>
+            <span><i class="fas fa-clock"></i> 16 Hours</span>
+            <span><i class="fas fa-users"></i> 1.9K Students</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">PKR 2,999</div>
+            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logical Reasoning -->
+      <div class="course-card-full reveal reveal-delay-4" data-cat="english">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&q=80" alt="Logical Reasoning">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 14 Lessons</div>
+          <div class="course-level-badge">All Levels</div>
+        </div>
+        <div class="course-body">
+          <div class="course-subject-tag lr-tag">Logical Reasoning</div>
+          <div class="course-title">Logical Reasoning Course</div>
+          <div class="course-desc">Pattern recognition, data interpretation, analytical reasoning — all PMC LR question types with step-by-step strategies.</div>
+          <div class="course-meta-row">
+            <span><i class="fas fa-play-circle"></i> 14 Video Lectures</span>
+            <span><i class="fas fa-clock"></i> 12 Hours</span>
+            <span><i class="fas fa-users"></i> 1.5K Students</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price">PKR 2,499</div>
+            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Crash Course Bundle -->
+      <div class="course-card-full reveal reveal-delay-5" data-cat="bundle">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80" alt="Crash Course">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 20 Lessons</div>
+          <div class="course-level-badge best-value">Best Value</div>
+        </div>
+        <div class="course-body">
+          <div class="course-subject-tag crash-tag">Bundle</div>
+          <div class="course-title">MDCAT Crash Course 2025</div>
+          <div class="course-desc">Smart, intensive crash preparation — all subjects in one package. Maximum revision, minimum time. Perfect for last-month prep.</div>
+          <div class="course-meta-row">
+            <span><i class="fas fa-play-circle"></i> 20 Video Lectures</span>
+            <span><i class="fas fa-clock"></i> 22 Hours</span>
+            <span><i class="fas fa-users"></i> 4.1K Students</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price-wrap">
+              <div class="course-price">PKR 3,499</div>
+              <div class="course-price-old">PKR 8,999</div>
+            </div>
+            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full Bundle -->
+      <div class="course-card-full reveal" data-cat="bundle">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Full Bundle">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 132 Lessons</div>
+          <div class="course-level-badge best-value">Most Popular</div>
+        </div>
+        <div class="course-body">
+          <div class="course-subject-tag crash-tag">Complete Bundle</div>
+          <div class="course-title">All Subjects Complete Bundle</div>
+          <div class="course-desc">All 5 courses in one — Biology, Chemistry, Physics, English & Logical Reasoning. The ultimate MDCAT preparation package at the best price.</div>
+          <div class="course-meta-row">
+            <span><i class="fas fa-play-circle"></i> 132 Video Lectures</span>
+            <span><i class="fas fa-clock"></i> 142 Hours</span>
+            <span><i class="fas fa-users"></i> 5.6K Students</span>
+          </div>
+          <div class="course-footer">
+            <div class="course-price-wrap">
+              <div class="course-price">PKR 12,999</div>
+              <div class="course-price-old">PKR 20,495</div>
+            </div>
+            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Medverse<span>your dream · our mission</span></div>
+      </a>
+      <p>Your trusted partner in MDCAT preparation. Study smart, stay confident, and achieve your dream.</p>
+            <div class="social-links">
+        <a href="https://www.facebook.com/share/14Y3RVJgNng/?mibextid=wwXIfr" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/medverse_pk?igsh=MTZ4ejdieGY4NzV5ZQ%3D%3D&utm_source=qr" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Medverse-team03232238602" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Home</a></li>
+        <li><a href="courses.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Courses</a></li>
+        <li><a href="notes.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Notes</a></li>
+        <li><a href="past-papers.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Past Papers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p class="newsletter-desc">Subscribe for updates on new courses, notes and MDCAT offers.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email">
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Medverse. All rights reserved.</p>
+    <p>Designed with ♥ for Pakistan's future doctors.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// Filter functionality
+const filterBtns = document.querySelectorAll('.filter-btn');
+const courseCards = document.querySelectorAll('.course-card-full');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    courseCards.forEach(card => {
+      if (filter === 'all' || card.dataset.cat === filter) {
+        card.style.display = '';
+        setTimeout(() => card.classList.add('visible'), 50);
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
+
+
+
+
+

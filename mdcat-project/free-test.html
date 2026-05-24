@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free MDCAT Test — Medverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ═══ FREE TEST PAGE ═══ */
+body { background: var(--navy); }
+
+.quiz-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 90px;
+}
+
+/* START SCREEN */
+.quiz-start {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+.quiz-start-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 4rem 3.5rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.quiz-start-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(139,92,246,0.1) 0%, transparent 60%);
+}
+.quiz-start-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--gradient-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  margin: 0 auto 2rem;
+  box-shadow: 0 0 60px var(--glow-purple);
+  position: relative;
+  animation: float1 4s ease-in-out infinite;
+}
+.quiz-start-card h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  position: relative;
+}
+.quiz-start-card h1 span {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.quiz-start-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.quiz-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+.quiz-info-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1.2rem 0.8rem;
+}
+.quiz-info-item i {
+  font-size: 1.4rem;
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.quiz-info-item strong {
+  display: block;
+  font-size: 1.3rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.quiz-info-item span {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+.quiz-start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem 2.8rem;
+  border-radius: 14px;
+  background: var(--gradient-main);
+  border: none;
+  color: white;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 30px var(--glow-purple);
+  position: relative;
+}
+.quiz-start-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px var(--glow-purple); }
+
+/* QUESTION SCREEN */
+.quiz-question-screen {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+}
+.quiz-question-screen.active {
+  display: flex;
+}
+.quiz-q-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 680px;
+  width: 100%;
+  position: relative;
+}
+
+/* Progress */
+.quiz-progress-wrap {
+  margin-bottom: 2rem;
+}
+.quiz-progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.quiz-q-counter {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-2);
+  letter-spacing: 0.08em;
+}
+.quiz-timer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(139,92,246,0.12);
+  border: 1px solid rgba(139,92,246,0.25);
+  padding: 5px 14px;
+  border-radius: 50px;
+}
+.quiz-timer i { color: var(--accent); font-size: 0.85rem; }
+.quiz-timer.warning { color: var(--rose); border-color: rgba(244,63,94,0.4); background: rgba(244,63,94,0.1); }
+.quiz-timer.warning i { color: var(--rose); }
+.quiz-progress-bar {
+  height: 5px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.quiz-progress-fill {
+  height: 100%;
+  background: var(--gradient-main);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Subject tag */
+.quiz-subj-tag {
+  display: inline-block;
+  padding: 3px 14px;
+  border-radius: 50px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.quiz-subj-tag.biology   { background: rgba(34,197,94,0.12);  border: 1px solid rgba(34,197,94,0.3);  color: #4ade80; }
+.quiz-subj-tag.chemistry { background: rgba(6,182,212,0.12);  border: 1px solid rgba(6,182,212,0.3);  color: #67e8f9; }
+.quiz-subj-tag.physics   { background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.3); color: #a78bfa; }
+.quiz-subj-tag.english   { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); color: #fbbf24; }
+
+.quiz-question-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Options */
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 2.5rem;
+}
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 1rem 1.4rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  color: var(--text-primary);
+  font-size: 0.97rem;
+  font-family: 'DM Sans', sans-serif;
+}
+.quiz-option:hover:not(:disabled) {
+  border-color: rgba(139,92,246,0.5);
+  background: rgba(139,92,246,0.08);
+  transform: translateX(4px);
+}
+.quiz-option.selected-correct {
+  border-color: #4ade80;
+  background: rgba(34,197,94,0.1);
+  color: #4ade80;
+}
+.quiz-option.selected-wrong {
+  border-color: #f43f5e;
+  background: rgba(244,63,94,0.1);
+  color: #f43f5e;
+}
+.quiz-option.show-correct {
+  border-color: #4ade80;
+  background: rgba(34,197,94,0.07);
+  color: #4ade80;
+}
+.quiz-option:disabled { cursor: not-allowed; }
+.option-letter {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.quiz-option.selected-correct .option-letter { background: #4ade80; color: #000; border-color: #4ade80; }
+.quiz-option.selected-wrong .option-letter   { background: #f43f5e; color: #fff; border-color: #f43f5e; }
+.quiz-option.show-correct .option-letter     { background: #4ade80; color: #000; border-color: #4ade80; }
+
+/* Explanation */
+.quiz-explanation {
+  display: none;
+  background: rgba(34,197,94,0.07);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 12px;
+  padding: 1rem 1.4rem;
+  margin-top: -1rem;
+  margin-bottom: 2rem;
+  font-size: 0.88rem;
+  color: #86efac;
+  line-height: 1.7;
+}
+.quiz-explanation.show { display: block; }
+.quiz-explanation strong { color: #4ade80; }
+
+/* Nav buttons */
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.quiz-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.75rem 1.6rem;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.quiz-nav-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+.quiz-nav-btn.primary {
+  background: var(--gradient-main);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 20px var(--glow-purple);
+}
+.quiz-nav-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 6px 28px var(--glow-purple); }
+.quiz-nav-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+/* Skip btn */
+.quiz-skip-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: color 0.2s;
+}
+.quiz-skip-btn:hover { color: var(--text-secondary); }
+
+/* RESULT SCREEN */
+.quiz-result-screen {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+.quiz-result-screen.active { display: flex; }
+
+.quiz-result-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 3.5rem;
+  max-width: 620px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.quiz-result-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(139,92,246,0.12) 0%, transparent 60%);
+}
+.result-emoji {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  display: block;
+  position: relative;
+  animation: float1 3s ease-in-out infinite;
+}
+.result-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.result-subhead {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.result-score-ring {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) var(--pct), rgba(255,255,255,0.06) 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  position: relative;
+  box-shadow: 0 0 60px var(--glow-purple);
+}
+.result-score-ring::before {
+  content: '';
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: var(--navy-2);
+}
+.result-score-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.result-score-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: block;
+}
+.result-score-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+}
+
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+.result-stat-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 1.2rem 0.8rem;
+}
+.result-stat-item i {
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.result-stat-item.correct i { color: #4ade80; }
+.result-stat-item.wrong i   { color: #f43f5e; }
+.result-stat-item.skip i    { color: #fbbf24; }
+.result-stat-item strong {
+  display: block;
+  font-size: 1.6rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.result-stat-item span {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.result-msg {
+  background: rgba(139,92,246,0.08);
+  border: 1px solid rgba(139,92,246,0.2);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  color: var(--accent-2);
+  font-size: 0.92rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.result-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.result-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.85rem 1.8rem;
+  border-radius: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+.result-action-btn.primary {
+  background: var(--gradient-main);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 20px var(--glow-purple);
+}
+.result-action-btn.primary:hover { transform: translateY(-2px); }
+.result-action-btn.secondary {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+}
+.result-action-btn.secondary:hover { border-color: var(--accent); color: var(--text-primary); }
+
+/* Dots indicator */
+.quiz-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.quiz-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+.quiz-dot.current  { background: var(--accent); box-shadow: 0 0 8px var(--glow-purple); }
+.quiz-dot.answered { background: #4ade80; }
+.quiz-dot.skipped  { background: rgba(255,255,255,0.25); }
+.quiz-dot.wrong    { background: #f43f5e; }
+
+@media (max-width: 600px) {
+  .quiz-start-card { padding: 2.5rem 1.5rem; }
+  .quiz-start-card h1 { font-size: 1.6rem; }
+  .quiz-info-grid { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+  .quiz-q-card { padding: 2rem 1.2rem; }
+  .quiz-question-text { font-size: 1rem; }
+  .result-stats { grid-template-columns: repeat(3, 1fr); }
+  .quiz-result-card { padding: 2.5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">Medverse<span>your dream · our mission</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="test-series.html">Test Series</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="mcqs.html">MCQs</a></li>
+      <li><a href="past-papers.html">Past Papers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-search"><i class="fas fa-search"></i></button>
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="test-series.html">Test Series</a>
+  <a href="notes.html">Notes</a>
+  <a href="mcqs.html">MCQs</a>
+  <a href="past-papers.html">Past Papers</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About Us</a>
+  <div class="mobile-btns">
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
+  </div>
+</div>
+
+<div class="quiz-wrapper">
+
+  <!-- START SCREEN -->
+  <div class="quiz-start" id="startScreen">
+    <div class="quiz-start-card">
+      <div class="quiz-start-icon">⚡</div>
+      <h1>Free MDCAT <span>Practice Test</span></h1>
+      <p>Test your MDCAT knowledge with 30 real exam-style questions from Biology, Chemistry, Physics & English. Get instant feedback and a full result at the end!</p>
+      <div class="quiz-info-grid">
+        <div class="quiz-info-item">
+          <i class="fas fa-question-circle"></i>
+          <strong>30</strong>
+          <span>Questions</span>
+        </div>
+        <div class="quiz-info-item">
+          <i class="fas fa-clock"></i>
+          <strong>30</strong>
+          <span>Minutes</span>
+        </div>
+        <div class="quiz-info-item">
+          <i class="fas fa-book-open"></i>
+          <strong>4</strong>
+          <span>Subjects</span>
+        </div>
+      </div>
+      <button class="quiz-start-btn" onclick="startQuiz()">
+        <i class="fas fa-bolt"></i> Start Free Test
+      </button>
+    </div>
+  </div>
+
+  <!-- QUESTION SCREEN -->
+  <div class="quiz-question-screen" id="questionScreen">
+    <div class="quiz-q-card">
+      <!-- Progress -->
+      <div class="quiz-progress-wrap">
+        <div class="quiz-progress-top">
+          <span class="quiz-q-counter" id="qCounter">Question 1 of 30</span>
+          <div class="quiz-timer" id="quizTimer">
+            <i class="fas fa-clock"></i>
+            <span id="timerDisplay">30:00</span>
+          </div>
+        </div>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="progressFill" style="width:3.33%"></div>
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="quiz-dots" id="quizDots"></div>
+
+      <!-- Subject Tag -->
+      <div class="quiz-subj-tag" id="qSubjTag">Biology</div>
+
+      <!-- Question -->
+      <div class="quiz-question-text" id="qText">Loading...</div>
+
+      <!-- Options -->
+      <div class="quiz-options" id="qOptions"></div>
+
+      <!-- Explanation -->
+      <div class="quiz-explanation" id="qExplanation"></div>
+
+      <!-- Nav -->
+      <div class="quiz-nav">
+        <button class="quiz-skip-btn" id="skipBtn" onclick="skipQuestion()">
+          <i class="fas fa-forward"></i> Skip
+        </button>
+        <div style="display:flex;gap:10px">
+          <button class="quiz-nav-btn" id="prevBtn" onclick="prevQuestion()">
+            <i class="fas fa-chevron-left"></i> Back
+          </button>
+          <button class="quiz-nav-btn primary" id="nextBtn" onclick="nextQuestion()">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="quiz-result-screen" id="resultScreen">
+    <div class="quiz-result-card">
+      <span class="result-emoji" id="resultEmoji">🎉</span>
+      <div class="result-heading" id="resultHeading">Test Complete!</div>
+      <div class="result-subhead" id="resultSubhead">Here's how you performed</div>
+
+      <div class="result-score-ring" id="scoreRing" style="--pct:0deg">
+        <div class="result-score-inner">
+          <span class="result-score-num" id="scoreNum">0/30</span>
+          <span class="result-score-label">SCORE</span>
+        </div>
+      </div>
+
+      <div class="result-stats">
+        <div class="result-stat-item correct">
+          <i class="fas fa-check-circle"></i>
+          <strong id="resCorrect">0</strong>
+          <span>Correct</span>
+        </div>
+        <div class="result-stat-item wrong">
+          <i class="fas fa-times-circle"></i>
+          <strong id="resWrong">0</strong>
+          <span>Wrong</span>
+        </div>
+        <div class="result-stat-item skip">
+          <i class="fas fa-minus-circle"></i>
+          <strong id="resSkipped">0</strong>
+          <span>Skipped</span>
+        </div>
+      </div>
+
+      <div class="result-msg" id="resultMsg"></div>
+
+      <div class="result-actions">
+        <button class="result-action-btn primary" onclick="retakeTest()">
+          <i class="fas fa-redo"></i> Retake Test
+        </button>
+        <a href="mcqs.html" class="result-action-btn secondary">
+          <i class="fas fa-list"></i> Practice MCQs
+        </a>
+        <a href="signup.html" class="result-action-btn secondary">
+          <i class="fas fa-star"></i> Full Tests
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- quiz-wrapper -->
+
+<script src="js/main.js"></script>
+<script>
+// ═══ QUIZ DATA (30 MCQs) ═══
+const quizData = [
+  // BIOLOGY (8)
+  {sub:'biology', q:'The powerhouse of the cell is the:', opts:['Nucleus','Mitochondria','Ribosome','Golgi apparatus'], ans:1, exp:'Mitochondria produce ATP through cellular respiration — hence called the powerhouse of the cell.'},
+  {sub:'biology', q:'Which blood group is the universal donor?', opts:['A','B','AB','O'], ans:3, exp:'Blood group O negative lacks A, B, and Rh antigens, making it compatible with all blood groups.'},
+  {sub:'biology', q:'DNA replication occurs during which phase of the cell cycle?', opts:['G1 phase','S phase','G2 phase','M phase'], ans:1, exp:'DNA synthesis (replication) occurs during the S (Synthesis) phase of interphase.'},
+  {sub:'biology', q:'The functional and structural unit of the kidney is:', opts:['Neuron','Nephron','Alveolus','Villus'], ans:1, exp:'The nephron is the microscopic structural and functional unit of the kidney responsible for filtration.'},
+  {sub:'biology', q:'Photosynthesis takes place in which organelle?', opts:['Mitochondria','Nucleus','Chloroplast','Ribosome'], ans:2, exp:'Chloroplasts contain chlorophyll pigment and are the site of photosynthesis in plant cells.'},
+  {sub:'biology', q:'Which enzyme is responsible for unwinding the DNA double helix?', opts:['DNA polymerase','Ligase','Helicase','Primase'], ans:2, exp:'Helicase breaks the hydrogen bonds between base pairs to unwind and separate the DNA strands.'},
+  {sub:'biology', q:'Loss of water from plant leaves is called:', opts:['Osmosis','Transpiration','Respiration','Diffusion'], ans:1, exp:'Transpiration is the process of water evaporation from plant surfaces, mainly through stomata.'},
+  {sub:'biology', q:'Which part of the brain controls balance and coordination?', opts:['Cerebrum','Cerebellum','Medulla oblongata','Hypothalamus'], ans:1, exp:'The cerebellum coordinates voluntary muscle movements and maintains posture and balance.'},
+  // CHEMISTRY (8)
+  {sub:'chemistry', q:'The pH of a neutral solution at 25°C is:', opts:['0','7','14','1'], ans:1, exp:'At 25°C, a neutral solution has equal H⁺ and OH⁻ concentrations, resulting in pH = 7.'},
+  {sub:'chemistry', q:'Which of the following is a noble gas?', opts:['Nitrogen','Oxygen','Argon','Chlorine'], ans:2, exp:'Argon (Ar) is a noble gas in Group 18 of the periodic table with a complete outer electron shell.'},
+  {sub:'chemistry', q:'How many moles are in 18g of water (H₂O)?', opts:['0.5 mol','1 mol','2 mol','18 mol'], ans:1, exp:'Molar mass of H₂O = 18 g/mol. Moles = 18g ÷ 18 g/mol = 1 mole.'},
+  {sub:'chemistry', q:'Which type of bond is formed by sharing of electron pairs?', opts:['Ionic bond','Covalent bond','Hydrogen bond','Metallic bond'], ans:1, exp:'Covalent bonds are formed when two atoms share one or more pairs of electrons.'},
+  {sub:'chemistry', q:'The oxidation state of oxygen in H₂O₂ is:', opts:['-2','-1','0','+1'], ans:1, exp:'In hydrogen peroxide (H₂O₂), oxygen has an unusual oxidation state of -1 (not the usual -2).'},
+  {sub:'chemistry', q:'Which gas is produced when zinc reacts with hydrochloric acid?', opts:['Oxygen','Carbon dioxide','Hydrogen','Chlorine'], ans:2, exp:'Zn + 2HCl → ZnCl₂ + H₂↑. Hydrogen gas is released in this single displacement reaction.'},
+  {sub:'chemistry', q:"Avogadro's number is approximately:", opts:['6.02 × 10²¹','6.02 × 10²³','6.02 × 10²⁵','3.01 × 10²³'], ans:1, exp:"Avogadro's number (6.022 × 10²³) is the number of atoms, molecules, or ions in one mole of a substance."},
+  {sub:'chemistry', q:'What is the IUPAC name of CH₃–CH₂–OH?', opts:['Methanol','Ethanol','Propanol','Butanol'], ans:1, exp:'CH₃–CH₂–OH has 2 carbon atoms with a hydroxyl (–OH) group, making it Ethanol.'},
+  // PHYSICS (8)
+  {sub:'physics', q:'What is the SI unit of electric current?', opts:['Volt','Ohm','Ampere','Watt'], ans:2, exp:'The Ampere (A) is the SI base unit of electric current, defined via elementary charge flow.'},
+  {sub:'physics', q:"F = ma represents Newton's:", opts:["1st Law","2nd Law","3rd Law","Law of Gravitation"], ans:1, exp:"Newton's Second Law states that Force = mass × acceleration (F = ma)."},
+  {sub:'physics', q:'What is the speed of light in a vacuum?', opts:['3 × 10⁶ m/s','3 × 10⁸ m/s','3 × 10¹⁰ m/s','3 × 10⁴ m/s'], ans:1, exp:'The speed of light in vacuum c ≈ 3 × 10⁸ m/s (approximately 300,000 km/s).'},
+  {sub:'physics', q:'Which type of wave does not require a medium to travel?', opts:['Sound wave','Water wave','Electromagnetic wave','Seismic wave'], ans:2, exp:'Electromagnetic waves (light, radio, X-rays) can travel through vacuum without requiring any medium.'},
+  {sub:'physics', q:'What is the SI unit of electrical resistance?', opts:['Ampere','Volt','Ohm','Farad'], ans:2, exp:'The Ohm (Ω) is the SI unit of electrical resistance, named after Georg Simon Ohm.'},
+  {sub:'physics', q:'The formula for kinetic energy is:', opts:['mgh','mv','½mv²','Fd'], ans:2, exp:'Kinetic Energy = ½mv², where m is mass in kg and v is velocity in m/s.'},
+  {sub:'physics', q:'The bending of waves around obstacles is called:', opts:['Reflection','Refraction','Diffraction','Dispersion'], ans:2, exp:'Diffraction is the bending and spreading of waves as they pass around obstacles or through openings.'},
+  {sub:'physics', q:'Half-life of a radioactive substance means:', opts:['All atoms decay','Half the atoms decay','One atom decays','Activity doubles'], ans:1, exp:'Half-life is the time required for exactly half of the radioactive nuclei in a sample to decay.'},
+  // ENGLISH (6)
+  {sub:'english', q:"Synonym of 'Benevolent':", opts:['Cruel','Kind','Angry','Lazy'], ans:1, exp:"Benevolent means well-meaning and kindly disposed. Its synonym is 'Kind'."},
+  {sub:'english', q:"Antonym of 'Verbose':", opts:['Talkative','Wordy','Concise','Fluent'], ans:2, exp:"Verbose means using too many words. Its antonym is 'Concise' (brief and to the point)."},
+  {sub:'english', q:"The word 'Ephemeral' means:", opts:['Permanent','Short-lived','Very large','Extremely bright'], ans:1, exp:"Ephemeral means lasting for a very short time — derived from Greek 'ephemeros' (lasting a day)."},
+  {sub:'english', q:'Choose the grammatically correct sentence:', opts:["She don't know","She doesn't knows","She doesn't know","She not know"], ans:2, exp:"With third-person singular subjects (she/he/it), use 'doesn't' followed by the base form of the verb."},
+  {sub:'english', q:"Synonym of 'Ameliorate':", opts:['Worsen','Improve','Ignore','Destroy'], ans:1, exp:"Ameliorate means to make something bad or unsatisfactory better. Its synonym is 'Improve'."},
+  {sub:'english', q:"Antonym of 'Loquacious':", opts:['Talkative','Garrulous','Taciturn','Verbose'], ans:2, exp:"Loquacious means very talkative. Its antonym is 'Taciturn' (reserved, saying little)."}
+];
+
+// ═══ STATE ═══
+let currentQ = 0;
+let userAnswers = new Array(30).fill(null); // null=unanswered, -1=skipped, 0-3=chosen
+let answered   = new Array(30).fill(false);
+let timerInterval = null;
+let totalSeconds = 30 * 60; // 30 min
+
+const letters = ['A','B','C','D'];
+
+// ═══ START ═══
+function startQuiz() {
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('questionScreen').classList.add('active');
+  buildDots();
+  renderQuestion(0);
+  startTimer();
+}
+
+// ═══ TIMER ═══
+function startTimer() {
+  timerInterval = setInterval(() => {
+    totalSeconds--;
+    const m = Math.floor(totalSeconds / 60);
+    const s = totalSeconds % 60;
+    document.getElementById('timerDisplay').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    const timerEl = document.getElementById('quizTimer');
+    if (totalSeconds <= 120) timerEl.classList.add('warning');
+    if (totalSeconds <= 0) { clearInterval(timerInterval); showResult(); }
+  }, 1000);
+}
+
+// ═══ DOTS ═══
+function buildDots() {
+  const wrap = document.getElementById('quizDots');
+  wrap.innerHTML = quizData.map((_,i) => `<div class="quiz-dot" id="dot-${i}"></div>`).join('');
+}
+function updateDots() {
+  quizData.forEach((_,i) => {
+    const d = document.getElementById('dot-'+i);
+    d.className = 'quiz-dot';
+    if (i === currentQ) d.classList.add('current');
+    else if (userAnswers[i] === -1) d.classList.add('skipped');
+    else if (answered[i]) {
+      d.classList.add(userAnswers[i] === quizData[i].ans ? 'answered' : 'wrong');
+    }
+  });
+}
+
+// ═══ RENDER QUESTION ═══
+function renderQuestion(idx) {
+  currentQ = idx;
+  const q = quizData[idx];
+
+  document.getElementById('qCounter').textContent = `Question ${idx+1} of ${quizData.length}`;
+  document.getElementById('progressFill').style.width = `${((idx+1)/quizData.length)*100}%`;
+
+  const tag = document.getElementById('qSubjTag');
+  tag.textContent = q.sub.charAt(0).toUpperCase() + q.sub.slice(1);
+  tag.className = `quiz-subj-tag ${q.sub}`;
+
+  document.getElementById('qText').textContent = q.q;
+
+  // Options
+  const opts = document.getElementById('qOptions');
+  opts.innerHTML = q.opts.map((o, i) => `
+    <button class="quiz-option" id="opt-${i}" onclick="selectOption(${i})" ${answered[idx] ? 'disabled' : ''}>
+      <span class="option-letter">${letters[i]}</span>
+      ${o}
+    </button>
+  `).join('');
+
+  // Restore state if answered
+  if (answered[idx]) {
+    restoreOptionState(idx);
+    document.getElementById('qExplanation').innerHTML = `<strong>✓ ${letters[q.ans]}. ${q.opts[q.ans]}</strong> — ${q.exp}`;
+    document.getElementById('qExplanation').classList.add('show');
+  } else {
+    document.getElementById('qExplanation').classList.remove('show');
+  }
+
+  // Nav
+  document.getElementById('prevBtn').disabled = idx === 0;
+  const nextBtn = document.getElementById('nextBtn');
+  nextBtn.innerHTML = idx === quizData.length-1
+    ? '<i class="fas fa-flag-checkered"></i> Finish Test'
+    : 'Next <i class="fas fa-chevron-right"></i>';
+  document.getElementById('skipBtn').style.display = answered[idx] ? 'none' : 'inline-flex';
+
+  updateDots();
+}
+
+function restoreOptionState(idx) {
+  const q = quizData[idx];
+  const sel = userAnswers[idx];
+  for (let i = 0; i < q.opts.length; i++) {
+    const btn = document.getElementById('opt-'+i);
+    if (!btn) continue;
+    if (i === q.ans) btn.classList.add('selected-correct');
+    else if (i === sel) btn.classList.add('selected-wrong');
+  }
+}
+
+// ═══ SELECT OPTION ═══
+function selectOption(chosen) {
+  if (answered[currentQ]) return;
+  const q = quizData[currentQ];
+  userAnswers[currentQ] = chosen;
+  answered[currentQ] = true;
+
+  // Disable all
+  for (let i = 0; i < q.opts.length; i++) {
+    const btn = document.getElementById('opt-'+i);
+    btn.disabled = true;
+    if (i === q.ans) btn.classList.add('selected-correct');
+    else if (i === chosen) btn.classList.add('selected-wrong');
+  }
+
+  // Show explanation
+  const exp = document.getElementById('qExplanation');
+  exp.innerHTML = `<strong>✓ Correct: ${letters[q.ans]}. ${q.opts[q.ans]}</strong> — ${q.exp}`;
+  exp.classList.add('show');
+
+  document.getElementById('skipBtn').style.display = 'none';
+  updateDots();
+}
+
+// ═══ SKIP ═══
+function skipQuestion() {
+  userAnswers[currentQ] = -1;
+  updateDots();
+  if (currentQ < quizData.length - 1) renderQuestion(currentQ + 1);
+  else showResult();
+}
+
+// ═══ NAV ═══
+function nextQuestion() {
+  if (currentQ < quizData.length - 1) renderQuestion(currentQ + 1);
+  else showResult();
+}
+function prevQuestion() {
+  if (currentQ > 0) renderQuestion(currentQ - 1);
+}
+
+// ═══ RESULT ═══
+function showResult() {
+  clearInterval(timerInterval);
+  document.getElementById('questionScreen').classList.remove('active');
+  document.getElementById('resultScreen').classList.add('active');
+
+  let correct = 0, wrong = 0, skipped = 0;
+  quizData.forEach((q, i) => {
+    if (userAnswers[i] === -1 || userAnswers[i] === null) skipped++;
+    else if (userAnswers[i] === q.ans) correct++;
+    else wrong++;
+  });
+
+  const pct = Math.round((correct / quizData.length) * 100);
+  const deg = Math.round((pct / 100) * 360);
+
+  document.getElementById('scoreRing').style.setProperty('--pct', `${deg}deg`);
+  document.getElementById('scoreNum').textContent = `${correct}/30`;
+  document.getElementById('resCorrect').textContent = correct;
+  document.getElementById('resWrong').textContent = wrong;
+  document.getElementById('resSkipped').textContent = skipped;
+
+  let emoji, heading, msg;
+  if (pct >= 80) {
+    emoji = '🏆'; heading = 'Outstanding!';
+    msg = `Wow! ${pct}% score — you are MDCAT ready! Your preparation is excellent. Keep up this momentum.`;
+  } else if (pct >= 60) {
+    emoji = '🎉'; heading = 'Well Done!';
+    msg = `${pct}% score — great effort! You have a solid foundation. Focus on your weak areas and you'll ace the real MDCAT!`;
+  } else if (pct >= 40) {
+    emoji = '📚'; heading = 'Keep Going!';
+    msg = `${pct}% score — you're on the right track! Practice more MCQs daily and revisit your notes. Consistency is key.`;
+  } else {
+    emoji = '💪'; heading = 'Don\'t Give Up!';
+    msg = `${pct}% score — every expert was once a beginner! Review the topics you found hard and try again. You've got this!`;
+  }
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultHeading').textContent = heading;
+  document.getElementById('resultMsg').textContent = msg;
+}
+
+// ═══ RETAKE ═══
+function retakeTest() {
+  currentQ = 0;
+  userAnswers = new Array(30).fill(null);
+  answered = new Array(30).fill(false);
+  totalSeconds = 30 * 60;
+  clearInterval(timerInterval);
+
+  document.getElementById('resultScreen').classList.remove('active');
+  document.getElementById('questionScreen').classList.add('active');
+  document.getElementById('timerDisplay').textContent = '30:00';
+  document.getElementById('quizTimer').classList.remove('warning');
+  buildDots();
+  renderQuestion(0);
+  startTimer();
+}
+</script>
+</body>
+</html>
+
+
+
+
+

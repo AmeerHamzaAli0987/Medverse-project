@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Series — Medverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Crimson+Pro:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">Medverse<span>your dream · our mission</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="test-series.html" class="nav-active">Test Series</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="mcqs.html">MCQs</a></li>
+      <li><a href="past-papers.html">Past Papers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-search"><i class="fas fa-search"></i></button>
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="test-series.html">Test Series</a>
+  <a href="notes.html">Notes</a>
+  <a href="mcqs.html">MCQs</a>
+  <a href="past-papers.html">Past Papers</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About Us</a>
+  <div class="mobile-btns">
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label reveal">Test Series</div>
+    <h1 class="page-hero-title reveal reveal-delay-1">Practice Like the Real MDCAT</h1>
+    <p class="page-hero-sub reveal reveal-delay-2">500+ full-length and topic-wise tests modelled on the official PMC MDCAT pattern. Track your score, identify weak areas, and improve fast.</p>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="ts-stats-bar">
+  <div class="container">
+    <div class="ts-stats-inner">
+      <div class="ts-stat reveal"><span>500+</span><p>Total Tests</p></div>
+      <div class="ts-stat reveal reveal-delay-1"><span>200</span><p>MCQs Per Full Test</p></div>
+      <div class="ts-stat reveal reveal-delay-2"><span>3.5 Hrs</span><p>Timed Sessions</p></div>
+      <div class="ts-stat reveal reveal-delay-3"><span>Instant</span><p>Result & Key</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- TEST SERIES SECTION -->
+<section class="section-pad ts-section">
+  <div class="container">
+
+    <!-- Full Length Tests -->
+    <div class="ts-category reveal">
+      <div class="ts-cat-header">
+        <div>
+          <div class="section-label">Full Length</div>
+          <h2 class="section-title" style="margin-bottom:0">Full Length Mock Tests</h2>
+        </div>
+        <a href="signup.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="ts-grid">
+
+        <div class="ts-card reveal">
+          <div class="ts-card-top">
+            <div class="ts-icon full"><i class="fas fa-clipboard-list"></i></div>
+            <div class="ts-badge free">FREE</div>
+          </div>
+          <div class="ts-title">MDCAT Full Mock Test — 01</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 200 MCQs</span>
+            <span><i class="fas fa-clock"></i> 3.5 Hours</span>
+            <span><i class="fas fa-signal"></i> Medium</span>
+          </div>
+          <div class="ts-subjects">
+            <span class="subj-tag bio">Bio</span>
+            <span class="subj-tag chem">Chem</span>
+            <span class="subj-tag phy">Phy</span>
+            <span class="subj-tag eng">Eng</span>
+          </div>
+          <a href="test.html?test=mock1" class="ts-btn"><i class="fas fa-play"></i> Start Test</a>
+        </div>
+
+        <div class="ts-card reveal reveal-delay-1">
+          <div class="ts-card-top">
+            <div class="ts-icon full"><i class="fas fa-clipboard-list"></i></div>
+            <div class="ts-badge free">FREE</div>
+          </div>
+          <div class="ts-title">MDCAT Full Mock Test — 02</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 200 MCQs</span>
+            <span><i class="fas fa-clock"></i> 3.5 Hours</span>
+            <span><i class="fas fa-signal"></i> Hard</span>
+          </div>
+          <div class="ts-subjects">
+            <span class="subj-tag bio">Bio</span>
+            <span class="subj-tag chem">Chem</span>
+            <span class="subj-tag phy">Phy</span>
+            <span class="subj-tag eng">Eng</span>
+          </div>
+          <a href="test.html?test=mock2" class="ts-btn"><i class="fas fa-play"></i> Start Test</a>
+        </div>
+
+        <div class="ts-card reveal reveal-delay-2">
+          <div class="ts-card-top">
+            <div class="ts-icon full"><i class="fas fa-clipboard-list"></i></div>
+            <div class="ts-badge premium">PREMIUM</div>
+          </div>
+          <div class="ts-title">MDCAT Full Mock Test — 03</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 200 MCQs</span>
+            <span><i class="fas fa-clock"></i> 3.5 Hours</span>
+            <span><i class="fas fa-signal"></i> Hard</span>
+          </div>
+          <div class="ts-subjects">
+            <span class="subj-tag bio">Bio</span>
+            <span class="subj-tag chem">Chem</span>
+            <span class="subj-tag phy">Phy</span>
+            <span class="subj-tag eng">Eng</span>
+          </div>
+          <a href="signup.html" class="ts-btn locked"><i class="fas fa-lock"></i> Unlock Test</a>
+        </div>
+
+        <div class="ts-card reveal reveal-delay-3">
+          <div class="ts-card-top">
+            <div class="ts-icon full"><i class="fas fa-clipboard-list"></i></div>
+            <div class="ts-badge premium">PREMIUM</div>
+          </div>
+          <div class="ts-title">MDCAT Full Mock Test — 04</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 200 MCQs</span>
+            <span><i class="fas fa-clock"></i> 3.5 Hours</span>
+            <span><i class="fas fa-signal"></i> Very Hard</span>
+          </div>
+          <div class="ts-subjects">
+            <span class="subj-tag bio">Bio</span>
+            <span class="subj-tag chem">Chem</span>
+            <span class="subj-tag phy">Phy</span>
+            <span class="subj-tag eng">Eng</span>
+          </div>
+          <a href="signup.html" class="ts-btn locked"><i class="fas fa-lock"></i> Unlock Test</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Topic Wise Tests -->
+    <div class="ts-category reveal" style="margin-top:4rem">
+      <div class="ts-cat-header">
+        <div>
+          <div class="section-label">Topic Wise</div>
+          <h2 class="section-title" style="margin-bottom:0">Topic Wise Tests</h2>
+        </div>
+        <a href="signup.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="ts-grid">
+
+        <div class="ts-card reveal">
+          <div class="ts-card-top">
+            <div class="ts-icon bio-icon"><i class="fas fa-dna"></i></div>
+            <div class="ts-badge free">FREE</div>
+          </div>
+          <div class="ts-title">Cell Biology — Chapter Test</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 40 MCQs</span>
+            <span><i class="fas fa-clock"></i> 40 Mins</span>
+            <span><i class="fas fa-signal"></i> Medium</span>
+          </div>
+          <div class="ts-subjects"><span class="subj-tag bio">Biology</span></div>
+          <a href="test.html?test=cell-bio" class="ts-btn"><i class="fas fa-play"></i> Start Test</a>
+        </div>
+
+        <div class="ts-card reveal reveal-delay-1">
+          <div class="ts-card-top">
+            <div class="ts-icon chem-icon"><i class="fas fa-flask"></i></div>
+            <div class="ts-badge free">FREE</div>
+          </div>
+          <div class="ts-title">Organic Chemistry — Chapter Test</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 40 MCQs</span>
+            <span><i class="fas fa-clock"></i> 40 Mins</span>
+            <span><i class="fas fa-signal"></i> Hard</span>
+          </div>
+          <div class="ts-subjects"><span class="subj-tag chem">Chemistry</span></div>
+          <a href="test.html?test=org-chem" class="ts-btn"><i class="fas fa-play"></i> Start Test</a>
+        </div>
+
+        <div class="ts-card reveal reveal-delay-2">
+          <div class="ts-card-top">
+            <div class="ts-icon phy-icon"><i class="fas fa-atom"></i></div>
+            <div class="ts-badge premium">PREMIUM</div>
+          </div>
+          <div class="ts-title">Mechanics — Chapter Test</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 40 MCQs</span>
+            <span><i class="fas fa-clock"></i> 40 Mins</span>
+            <span><i class="fas fa-signal"></i> Medium</span>
+          </div>
+          <div class="ts-subjects"><span class="subj-tag phy">Physics</span></div>
+          <a href="signup.html" class="ts-btn locked"><i class="fas fa-lock"></i> Unlock Test</a>
+        </div>
+
+        <div class="ts-card reveal reveal-delay-3">
+          <div class="ts-card-top">
+            <div class="ts-icon eng-icon"><i class="fas fa-book"></i></div>
+            <div class="ts-badge premium">PREMIUM</div>
+          </div>
+          <div class="ts-title">English Vocabulary — Chapter Test</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 30 MCQs</span>
+            <span><i class="fas fa-clock"></i> 25 Mins</span>
+            <span><i class="fas fa-signal"></i> Easy</span>
+          </div>
+          <div class="ts-subjects"><span class="subj-tag eng">English</span></div>
+          <a href="signup.html" class="ts-btn locked"><i class="fas fa-lock"></i> Unlock Test</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Subject Wise Tests -->
+    <div class="ts-category reveal" style="margin-top:4rem">
+      <div class="ts-cat-header">
+        <div>
+          <div class="section-label">Subject Wise</div>
+          <h2 class="section-title" style="margin-bottom:0">Subject Wise Tests</h2>
+        </div>
+        <a href="signup.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="ts-grid">
+
+        <div class="ts-card reveal">
+          <div class="ts-card-top">
+            <div class="ts-icon bio-icon"><i class="fas fa-dna"></i></div>
+            <div class="ts-badge free">FREE</div>
+          </div>
+          <div class="ts-title">Biology Full Subject Test</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 88 MCQs</span>
+            <span><i class="fas fa-clock"></i> 90 Mins</span>
+            <span><i class="fas fa-signal"></i> Hard</span>
+          </div>
+          <div class="ts-subjects"><span class="subj-tag bio">Biology</span></div>
+          <a href="test.html?test=bio-full" class="ts-btn"><i class="fas fa-play"></i> Start Test</a>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 54 MCQs</span>
+            <span><i class="fas fa-clock"></i> 60 Mins</span>
+            <span><i class="fas fa-signal"></i> Hard</span>
+          </div>
+          <div class="ts-subjects"><span class="subj-tag chem">Chemistry</span></div>
+          <a href="signup.html" class="ts-btn locked"><i class="fas fa-lock"></i> Unlock Test</a>
+        </div>
+
+        <div class="ts-card reveal reveal-delay-2">
+          <div class="ts-card-top">
+            <div class="ts-icon phy-icon"><i class="fas fa-atom"></i></div>
+            <div class="ts-badge premium">PREMIUM</div>
+          </div>
+          <div class="ts-title">Physics Full Subject Test</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 54 MCQs</span>
+            <span><i class="fas fa-clock"></i> 60 Mins</span>
+            <span><i class="fas fa-signal"></i> Very Hard</span>
+          </div>
+          <div class="ts-subjects"><span class="subj-tag phy">Physics</span></div>
+          <a href="signup.html" class="ts-btn locked"><i class="fas fa-lock"></i> Unlock Test</a>
+        </div>
+
+        <div class="ts-card reveal reveal-delay-3">
+          <div class="ts-card-top">
+            <div class="ts-icon lr-icon"><i class="fas fa-brain"></i></div>
+            <div class="ts-badge premium">PREMIUM</div>
+          </div>
+          <div class="ts-title">Logical Reasoning Full Test</div>
+          <div class="ts-meta">
+            <span><i class="fas fa-list-ol"></i> 14 MCQs</span>
+            <span><i class="fas fa-clock"></i> 20 Mins</span>
+            <span><i class="fas fa-signal"></i> Medium</span>
+          </div>
+          <div class="ts-subjects"><span class="subj-tag lr-tag" style="background:rgba(244,63,94,0.1);color:#fb7185;border:1px solid rgba(244,63,94,0.2)">Logic</span></div>
+          <a href="signup.html" class="ts-btn locked"><i class="fas fa-lock"></i> Unlock Test</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Medverse<span>your dream · our mission</span></div>
+      </a>
+      <p>Your trusted partner in MDCAT preparation. Study smart, stay confident, and achieve your dream.</p>
+            <div class="social-links">
+        <a href="https://www.facebook.com/share/14Y3RVJgNng/?mibextid=wwXIfr" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/medverse_pk?igsh=MTZ4ejdieGY4NzV5ZQ%3D%3D&utm_source=qr" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Medverse-team03232238602" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Home</a></li>
+        <li><a href="courses.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Courses</a></li>
+        <li><a href="notes.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Notes</a></li>
+        <li><a href="past-papers.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Past Papers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p class="newsletter-desc">Subscribe for updates on new tests, courses and MDCAT offers.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email">
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Medverse. All rights reserved.</p>
+    <p>Designed with ♥ for Pakistan's future doctors.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
+
+
+
+
+

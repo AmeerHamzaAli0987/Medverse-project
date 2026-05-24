@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Medverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Crimson+Pro:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.8rem;
+    margin-top: 2rem;
+  }
+  .blog-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(139,92,246,0.15);
+  }
+  .blog-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  .blog-card-body {
+    padding: 1.4rem;
+  }
+  .blog-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.7rem;
+  }
+  .tag-guide    { background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.25); }
+  .tag-tips     { background: rgba(34,197,94,0.12);  color: #4ade80; border: 1px solid rgba(34,197,94,0.2); }
+  .tag-mcqs     { background: rgba(244,63,94,0.12);  color: #fb7185; border: 1px solid rgba(244,63,94,0.2); }
+  .tag-merit    { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+  .tag-plan     { background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.2); }
+  .blog-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .blog-card-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .blog-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+  }
+  .blog-read-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .blog-read-btn:hover { gap: 10px; }
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">
+        Medverse<span>your dream · our mission</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="test-series.html">Test Series</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="mcqs.html">MCQs</a></li>
+      <li><a href="past-papers.html">Past Papers</a></li>
+      <li><a href="blog.html" class="nav-active">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-search"><i class="fas fa-search"></i></button>
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="test-series.html">Test Series</a>
+  <a href="notes.html">Notes</a>
+  <a href="mcqs.html">MCQs</a>
+  <a href="past-papers.html">Past Papers</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About Us</a>
+  <div class="mobile-btns">
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label reveal">MDCAT Blog</div>
+    <h1 class="page-hero-title reveal reveal-delay-1">Tips, Guides & Resources</h1>
+    <p class="page-hero-sub reveal reveal-delay-2">Expert articles to help you prepare smarter — from syllabus breakdowns to scoring strategies.</p>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section class="section-pad">
+  <div class="container">
+    <div class="blog-grid">
+
+      <div class="blog-card reveal">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="MDCAT Syllabus 2026">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-guide">Guide</span>
+          <div class="blog-card-title">MDCAT Syllabus 2026 — Complete Breakdown</div>
+          <div class="blog-card-desc">Full subject-wise syllabus for MDCAT 2026 with topic weightage, important chapters and what PMC expects.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 8 min read</span>
+            <a href="blog-syllabus-2026.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-1">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=600&q=80" alt="Past Papers Guide">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-guide">Guide</span>
+          <div class="blog-card-title">Past Papers Guide — How to Use Them Effectively</div>
+          <div class="blog-card-desc">Learn the right strategy to solve past papers, identify patterns and maximise your score in MDCAT.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 6 min read</span>
+            <a href="blog-past-papers-guide.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-2">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="How to Score 190+">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-tips">Tips</span>
+          <div class="blog-card-title">How to Score 190+ in MDCAT 2025</div>
+          <div class="blog-card-desc">Proven strategies from top scorers — time management, revision techniques and exam day tips.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 10 min read</span>
+            <a href="blog-score-190.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-3">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80" alt="3-Month Study Plan">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-plan">Study Plan</span>
+          <div class="blog-card-title">3-Month MDCAT Study Plan — Week by Week</div>
+          <div class="blog-card-desc">A complete day-by-day study schedule covering all subjects in 90 days with revision cycles.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 7 min read</span>
+            <a href="blog-study-plan.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-4">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80" alt="Top 10 Mistakes">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-tips">Tips</span>
+          <div class="blog-card-title">Top 10 Mistakes to Avoid in MDCAT</div>
+          <div class="blog-card-desc">Common errors students make during preparation and on exam day — and how to avoid them.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 5 min read</span>
+            <a href="blog-mistakes.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-5">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1532094349884-543559059a6b?w=600&q=80" alt="Best Books for MDCAT">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-guide">Guide</span>
+          <div class="blog-card-title">Best Books for MDCAT 2025 — Subject Wise</div>
+          <div class="blog-card-desc">Recommended books for Biology, Chemistry, Physics and English with expert reviews and comparisons.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 6 min read</span>
+            <a href="blog-best-books.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=600&q=80" alt="Biology Repeated MCQs">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-mcqs">MCQs</span>
+          <div class="blog-card-title">Biology Repeated MCQs — Most Important Topics</div>
+          <div class="blog-card-desc">High-frequency Biology MCQs that have appeared repeatedly in MDCAT over the years with explanations.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 12 min read</span>
+            <a href="blog-bio-mcqs.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-1">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80" alt="Chemistry Repeated MCQs">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-mcqs">MCQs</span>
+          <div class="blog-card-title">Chemistry Repeated MCQs — Organic & Inorganic</div>
+          <div class="blog-card-desc">Most repeated Chemistry questions from past MDCAT papers with detailed solutions and shortcuts.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 11 min read</span>
+            <a href="blog-chem-mcqs.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-2">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=600&q=80" alt="Physics Repeated MCQs">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-mcqs">MCQs</span>
+          <div class="blog-card-title">Physics Repeated MCQs — Numericals & Concepts</div>
+          <div class="blog-card-desc">Frequently tested Physics MCQs with formula-based shortcuts and conceptual tricks for MDCAT.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 10 min read</span>
+            <a href="blog-phy-mcqs.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-3">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&q=80" alt="Punjab Merit Lists">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-merit">Merit</span>
+          <div class="blog-card-title">Punjab Merit Lists 2008–2025 — All Colleges</div>
+          <div class="blog-card-desc">Complete merit list data for all Punjab medical colleges from 2008 to 2025 to help you set your target.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 5 min read</span>
+            <a href="blog-merit-lists.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-card reveal reveal-delay-4">
+        <img class="blog-card-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Aggregate Calculator">
+        <div class="blog-card-body">
+          <span class="blog-tag tag-guide">Guide</span>
+          <div class="blog-card-title">Aggregate Calculator Guide — How It Works</div>
+          <div class="blog-card-desc">Step-by-step guide to calculate your MDCAT aggregate for UHS, PMC, KMU and other universities.</div>
+          <div class="blog-card-footer">
+            <span><i class="fas fa-clock"></i> 4 min read</span>
+            <a href="blog-aggregate-calculator.html" class="blog-read-btn">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Medverse<span>your dream · our mission</span></div>
+      </a>
+      <p>Your trusted partner in MDCAT preparation. Study smart, stay confident, and achieve your dream.</p>
+            <div class="social-links">
+        <a href="https://www.facebook.com/share/14Y3RVJgNng/?mibextid=wwXIfr" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/medverse_pk?igsh=MTZ4ejdieGY4NzV5ZQ%3D%3D&utm_source=qr" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Medverse-team03232238602" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Home</a></li>
+        <li><a href="courses.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Courses</a></li>
+        <li><a href="notes.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Notes</a></li>
+        <li><a href="past-papers.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Past Papers</a></li>
+        <li><a href="blog.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p class="newsletter-desc">Subscribe for updates on new articles, notes and MDCAT offers.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email">
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Medverse. All rights reserved.</p>
+    <p>Designed with ♥ for Pakistan's future doctors.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
+
+
+
+

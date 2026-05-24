@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes — Medverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Crimson+Pro:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">
+        Medverse<span>your dream · our mission</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">Test Series</a></li>
+      <li><a href="notes.html" class="nav-active">Notes</a></li>
+      <li><a href="#">MCQs</a></li>
+      <li><a href="past-papers.html">Past Papers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-search"><i class="fas fa-search"></i></button>
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="#">Courses</a>
+  <a href="#">Test Series</a>
+  <a href="notes.html">Notes</a>
+  <a href="#">MCQs</a>
+  <a href="past-papers.html">Past Papers</a>
+  <a href="blog.html">Blog</a>
+  <a href="#">About Us</a>
+  <div class="mobile-btns">
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="section-label reveal">Study Notes</div>
+    <h1 class="page-hero-title reveal reveal-delay-1">Premium MDCAT Notes</h1>
+    <p class="page-hero-sub reveal reveal-delay-2">Expert-crafted, exam-focused PDF notes for every MDCAT subject. Concise, visual, and exactly what you need to score high.</p>
+  </div>
+</section>
+
+<!-- NOTES GRID -->
+<section class="section-pad notes-section">
+  <div class="container">
+    <div class="notes-grid">
+
+      <div class="note-card reveal">
+        <div class="note-img-wrap">
+          <img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=300&q=80" alt="Biology Notes">
+        </div>
+        <div class="note-body">
+          <div class="note-subject-tag bio-tag">Biology</div>
+          <div class="note-title">Complete Biology Notes 2025</div>
+          <div class="note-desc">All chapters covered — Cell Biology, Genetics, Ecology, Human Physiology and more.</div>
+          <div class="note-meta">
+            <span><i class="fas fa-file-alt"></i> 180 Pages</span>
+            <span><i class="fas fa-download"></i> 8.2K Downloads</span>
+          </div>
+          <a href="https://insightmdcat.com/biology-notes/" target="_blank" class="note-btn"><i class="fas fa-external-link-alt"></i> Download Notes</a>
+        </div>
+      </div>
+
+      <div class="note-card reveal reveal-delay-1">
+        <div class="note-img-wrap">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=300&q=80" alt="Chemistry Notes">
+        </div>
+        <div class="note-body">
+          <div class="note-subject-tag chem-tag">Chemistry</div>
+          <div class="note-title">Complete Chemistry Notes 2025</div>
+          <div class="note-desc">Organic, Inorganic & Physical Chemistry — all reactions, mechanisms and formulas.</div>
+          <div class="note-meta">
+            <span><i class="fas fa-file-alt"></i> 160 Pages</span>
+            <span><i class="fas fa-download"></i> 7.5K Downloads</span>
+          </div>
+          <a href="https://www.scribd.com/document/753594763/mdcat-mcqs-by-Dr-Shah-mdcat-preparation" target="_blank" class="note-btn"><i class="fas fa-external-link-alt"></i> Download Notes</a>
+        </div>
+      </div>
+
+      <div class="note-card reveal reveal-delay-2">
+        <div class="note-img-wrap">
+          <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=300&q=80" alt="Physics Notes">
+        </div>
+        <div class="note-body">
+          <div class="note-subject-tag phy-tag">Physics</div>
+          <div class="note-title">Complete Physics Notes 2025</div>
+          <div class="note-desc">Mechanics, Waves, Thermodynamics, Electromagnetism & Modern Physics.</div>
+          <div class="note-meta">
+            <span><i class="fas fa-file-alt"></i> 140 Pages</span>
+            <span><i class="fas fa-download"></i> 6.1K Downloads</span>
+          </div>
+          <a href="https://www.scribd.com/document/900507694/Physics-Master-Book-2025-Insight-MDCAT" target="_blank" class="note-btn"><i class="fas fa-external-link-alt"></i> Download Notes</a>
+        </div>
+      </div>
+
+      <div class="note-card reveal reveal-delay-3">
+        <div class="note-img-wrap">
+          <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=300&q=80" alt="English Notes">
+        </div>
+        <div class="note-body">
+          <div class="note-subject-tag eng-tag">English</div>
+          <div class="note-title">English Vocabulary & Grammar Notes</div>
+          <div class="note-desc">High-frequency MDCAT vocabulary, synonyms, antonyms and comprehension strategies.</div>
+          <div class="note-meta">
+            <span><i class="fas fa-file-alt"></i> 80 Pages</span>
+            <span><i class="fas fa-download"></i> 5.4K Downloads</span>
+          </div>
+          <a href="https://www.scribd.com/document/660139289/Mdcat-Past-Papers-2010-2021-172-Pages-READY" target="_blank" class="note-btn"><i class="fas fa-external-link-alt"></i> Download Notes</a>
+        </div>
+      </div>
+
+      <div class="note-card reveal reveal-delay-4">
+        <div class="note-img-wrap">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&q=80" alt="Logical Reasoning Notes">
+        </div>
+        <div class="note-body">
+          <div class="note-subject-tag lr-tag">Logical Reasoning</div>
+          <div class="note-title">Logical Reasoning Complete Notes</div>
+          <div class="note-desc">Pattern recognition, data interpretation — all PMC LR question types with solved examples.</div>
+          <div class="note-meta">
+            <span><i class="fas fa-file-alt"></i> 60 Pages</span>
+            <span><i class="fas fa-download"></i> 4.8K Downloads</span>
+          </div>
+          <a href="https://medicoengineer.com/mdcat-mcqs-pdf/" target="_blank" class="note-btn"><i class="fas fa-external-link-alt"></i> Download Notes</a>
+        </div>
+      </div>
+
+      <div class="note-card reveal reveal-delay-5">
+        <div class="note-img-wrap">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=300&q=80" alt="Crash Revision Notes">
+        </div>
+        <div class="note-body">
+          <div class="note-subject-tag crash-tag">Crash Revision</div>
+          <div class="note-title">Last 30 Days Revision Notes</div>
+          <div class="note-desc">Ultra-concise revision notes covering all high-yield topics — perfect for the final month.</div>
+          <div class="note-meta">
+            <span><i class="fas fa-file-alt"></i> 100 Pages</span>
+            <span><i class="fas fa-download"></i> 9.3K Downloads</span>
+          </div>
+          <a href="https://www.scribd.com/document/870488543/Biology-MDCAT-Notes-for-2025" target="_blank" class="note-btn"><i class="fas fa-external-link-alt"></i> Download Notes</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Medverse<span>your dream · our mission</span></div>
+      </a>
+      <p>Your trusted partner in MDCAT preparation. Study smart, stay confident, and achieve your dream.</p>
+            <div class="social-links">
+        <a href="https://www.facebook.com/share/14Y3RVJgNng/?mibextid=wwXIfr" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/medverse_pk?igsh=MTZ4ejdieGY4NzV5ZQ%3D%3D&utm_source=qr" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Medverse-team03232238602" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Home</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Courses</a></li>
+        <li><a href="notes.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Notes</a></li>
+        <li><a href="past-papers.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Past Papers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p class="newsletter-desc">Subscribe for updates on new notes, courses and MDCAT offers.</p>
+      <div class="newsletter-form">
+        <input type="email" class="newsletter-input" placeholder="Enter your email">
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Medverse. All rights reserved.</p>
+    <p>Designed with ♥ for Pakistan's future doctors.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — Medverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Crimson+Pro:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .auth-bg-orb-1 {
+    position: fixed; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%);
+    top: -150px; left: -150px; pointer-events: none; z-index: 0;
+  }
+  .auth-bg-orb-2 {
+    position: fixed; width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(6,182,212,0.08) 0%, transparent 70%);
+    bottom: -100px; right: -100px; pointer-events: none; z-index: 0;
+  }
+  .auth-grid-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .back-home {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.8rem; color: var(--text-muted); text-decoration: none;
+    margin-bottom: 1.5rem; transition: color 0.2s;
+  }
+  .back-home:hover { color: var(--accent-2); }
+  .login-features {
+    display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0;
+  }
+  .login-feat {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.82rem; color: var(--text-secondary);
+  }
+  .login-feat i { color: var(--accent); font-size: 0.75rem; width: 16px; text-align: center; }
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+<div class="auth-bg-orb-1"></div>
+<div class="auth-bg-orb-2"></div>
+<div class="auth-grid-bg"></div>
+
+<div class="auth-page">
+  <div class="auth-card">
+
+    <a href="index.html" class="back-home">
+      <i class="fas fa-arrow-left"></i> Back to Home
+    </a>
+
+    <a href="index.html" class="auth-logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">
+        Medverse<span>your dream · our mission</span>
+      </div>
+    </a>
+
+    <div class="auth-title">Welcome Back</div>
+    <div class="auth-subtitle">Login to your account and continue your MDCAT journey.</div>
+
+    <div class="login-features">
+      <div class="login-feat"><i class="fas fa-check-circle"></i> Access 500+ practice tests</div>
+      <div class="login-feat"><i class="fas fa-check-circle"></i> Track your performance analytics</div>
+      <div class="login-feat"><i class="fas fa-check-circle"></i> Download premium study notes</div>
+    </div>
+
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input type="email" id="email" class="form-input" placeholder="you@example.com" autocomplete="email">
+        <div class="field-error" id="email-error"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">
+          Password
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </label>
+        <div class="input-wrap">
+          <input type="password" id="password" class="form-input" placeholder="Enter your password" autocomplete="current-password">
+          <button type="button" class="toggle-pw"><i class="fas fa-eye"></i></button>
+        </div>
+        <div class="field-error" id="password-error"></div>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" id="remember">
+        <label for="remember">Remember me on this device</label>
+      </div>
+
+      <button type="submit" class="btn-auth">
+        <i class="fas fa-sign-in-alt" style="margin-right:8px"></i> Login to Account
+      </button>
+    </form>
+
+    <div class="auth-switch">
+      Don't have an account? <a href="signup.html">Create one free →</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
+
+
+
+
+

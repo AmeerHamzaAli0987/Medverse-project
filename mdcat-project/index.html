@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medverse — Your Dream. Our Mission.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Crimson+Pro:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🎓</div>
+      <div class="logo-text">
+        Medverse<span>your dream · our mission</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="test-series.html">Test Series</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="mcqs.html">MCQs</a></li>
+      <li><a href="past-papers.html">Past Papers</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-search"><i class="fas fa-search"></i></button>
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="signup.html" class="btn-signup">Sign Up</a>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="courses.html">Courses</a>
+  <a href="test-series.html">Test Series</a>
+  <a href="notes.html">Notes</a>
+  <a href="mcqs.html">MCQs</a>
+  <a href="past-papers.html">Past Papers</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About Us</a>
+  <div class="mobile-btns">
+    <a href="login.html" class="btn-login">Login</a>
+    <a href="signup.html" class="btn-signup">Sign Up</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-img"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-badge reveal">✦ Your Dream. Our Mission.</div>
+    <h1 class="hero-headline reveal reveal-delay-1">
+      Prepare Hard Today,<br>
+      <span class="gradient-word">Get Admitted Tomorrow.</span>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      A complete MDCAT preparation platform with expert guidance, topic-wise courses, premium notes and real exam practice.
+    </p>
+    <div class="hero-ctas reveal reveal-delay-3">
+      <a href="signup.html" class="btn-primary">
+        Start Preparing Now <i class="fas fa-arrow-right"></i>
+      </a>
+      <a href="#" class="btn-outline">
+        Explore Courses <i class="fas fa-compass"></i>
+      </a>
+    </div>
+    <div class="hero-social-proof reveal reveal-delay-4">
+      <div class="avatar-stack">
+        <img src="https://i.pravatar.cc/80?img=11" alt="">
+        <img src="https://i.pravatar.cc/80?img=22" alt="">
+        <img src="https://i.pravatar.cc/80?img=33" alt="">
+        <img src="https://i.pravatar.cc/80?img=44" alt="">
+      </div>
+      <div class="proof-stat">
+        <strong>10K+ Students</strong>
+        <span>Already enrolled</span>
+      </div>
+      <div class="proof-divider"></div>
+      <div class="proof-stat">
+        <div class="stars">★★★★★</div>
+        <strong>4.8 <span style="font-weight:400;color:var(--text-secondary);font-size:0.8rem">(2.5K Reviews)</span></strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section-pad features-bg">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3.5rem">
+      <div class="section-label reveal">Why Choose Us</div>
+      <h2 class="section-title reveal reveal-delay-1">Everything Built for<br>MDCAT Excellence</h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="margin:0 auto">We've engineered every feature with one goal — getting you into Pakistan's top medical universities.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-card-glow"></div>
+        <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+        <div class="feature-title">Expert Faculty</div>
+        <div class="feature-desc">Learn directly from Pakistan's top MDCAT educators with decade-long track records of producing toppers.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-card-glow"></div>
+        <div class="feature-icon"><i class="fas fa-book-open"></i></div>
+        <div class="feature-title">Comprehensive Courses</div>
+        <div class="feature-desc">All topics systematically covered as per the official PMC MDCAT syllabus — Biology, Chemistry, Physics, English.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-card-glow"></div>
+        <div class="feature-icon"><i class="fas fa-file-alt"></i></div>
+        <div class="feature-title">Extensive Test Series</div>
+        <div class="feature-desc">500+ real exam-modelled practice tests with intelligent adaptive difficulty to sharpen your performance.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-card-glow"></div>
+        <div class="feature-icon"><i class="fas fa-sticky-note"></i></div>
+        <div class="feature-title">High Quality Notes</div>
+        <div class="feature-desc">Well-researched, exam-focused PDF notes — concise, visual, and exactly what you need for MDCAT.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-4">
+        <div class="feature-card-glow"></div>
+        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="feature-title">Performance Analytics</div>
+        <div class="feature-desc">AI-powered dashboards that pinpoint your weak areas and track improvements in real time.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-5">
+        <div class="feature-card-glow"></div>
+        <div class="feature-icon"><i class="fas fa-users"></i></div>
+        <div class="feature-title">Student Community</div>
+        <div class="feature-desc">Join 10,000+ driven MDCAT aspirants. Learn, discuss, share, and grow together toward your goal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="section-pad courses-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label reveal">Popular Courses</div>
+        <h2 class="section-title reveal reveal-delay-1">Master Every Subject</h2>
+      </div>
+      <a href="#" class="view-all reveal">View All Courses <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card reveal">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=400&q=80" alt="Biology">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 36 Lessons</div>
+        </div>
+        <div class="course-body">
+          <div class="course-title">Biology Full Course</div>
+          <div class="course-desc">Complete Biology preparation aligned with MDCAT syllabus — cells to ecosystems.</div>
+          <div class="course-footer">
+            <div class="course-price">PKR 4,999</div>
+            <button class="cart-btn"><i class="fas fa-shopping-cart"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal reveal-delay-1">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400&q=80" alt="Chemistry">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 34 Lessons</div>
+        </div>
+        <div class="course-body">
+          <div class="course-title">Chemistry Full Course</div>
+          <div class="course-desc">Comprehensive organic, inorganic & physical chemistry for MDCAT mastery.</div>
+          <div class="course-footer">
+            <div class="course-price">PKR 4,999</div>
+            <button class="cart-btn"><i class="fas fa-shopping-cart"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal reveal-delay-2">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=400&q=80" alt="Physics">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 30 Lessons</div>
+        </div>
+        <div class="course-body">
+          <div class="course-title">Physics Full Course</div>
+          <div class="course-desc">Conceptual and numerical physics — from mechanics to modern physics, MDCAT-ready.</div>
+          <div class="course-footer">
+            <div class="course-price">PKR 4,999</div>
+            <button class="cart-btn"><i class="fas fa-shopping-cart"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal reveal-delay-3">
+        <div class="course-img-wrap">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=80" alt="Crash Course">
+          <div class="lesson-badge"><i class="fas fa-play-circle"></i> 20 Lessons</div>
+        </div>
+        <div class="course-body">
+          <div class="course-title">MDCAT Crash Course</div>
+          <div class="course-desc">Smart, intensive crash preparation for MDCAT 2025 — maximum revision, minimum time.</div>
+          <div class="course-footer">
+            <div class="course-price">PKR 3,499</div>
+            <button class="cart-btn"><i class="fas fa-shopping-cart"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS + FREE TEST -->
+<section class="stats-section">
+  <div class="container" style="padding:0">
+    <div class="stats-inner">
+      <div class="stats-left">
+        <div class="stat-item reveal">
+          <div class="stat-number" data-count="10000">0</div>
+          <div class="stat-label">Students Enrolled</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-number" data-count="500">0</div>
+          <div class="stat-label">Tests Available</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-number" data-count="1000">0</div>
+          <div class="stat-label">MCQs Practice</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-number" data-count="95" data-suffix="%">0</div>
+          <div class="stat-label">Success Rate</div>
+        </div>
+      </div>
+      <div class="stats-right">
+        <div class="stats-right-inner">
+          <div class="section-label reveal" style="margin-bottom:1rem">Free Trial</div>
+          <h3 class="reveal reveal-delay-1">Take a <span>Free MDCAT</span><br>Test Today</h3>
+          <p class="reveal reveal-delay-2">Experience the full power of our platform with a complete, free, full-length MDCAT practice test. No commitment needed.</p>
+          <a href="free-test.html" class="test-cta-btn reveal reveal-delay-3">
+            <i class="fas fa-bolt"></i> Start Free Test
+          </a>
+        </div>
+        <div class="stats-illustration">⏱</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-pad testimonials-bg">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-label reveal">Student Reviews</div>
+        <h2 class="section-title reveal reveal-delay-1">What Our Students Say</h2>
+      </div>
+      <a href="#" class="view-all reveal">View All Reviews <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <img class="testimonial-avatar" src="https://i.pravatar.cc/100?img=51" alt="Taiba">
+        <div class="testimonial-name">Farooq</div>
+        <div class="testimonial-role">Physics Student — Mam Adeena</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"I had my first Physics class today, and I just want to say thank you, Mam Adeena! Your explanation style is so effective, and you're already helping me clear up my concepts."</div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <img class="testimonial-avatar" src="https://i.pravatar.cc/100?img=12" alt="Ziyaan">
+        <div class="testimonial-name">Ziyaan</div>
+        <div class="testimonial-role">Student — Sir Maheer</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Sir Maheer made topics easier to understand with tips and tricks. For problem solving he helped me do multiple questions in a short time, making studying competitive and effective."</div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <img class="testimonial-avatar" src="https://i.pravatar.cc/100?img=47" alt="Manal">
+        <div class="testimonial-name">Manal</div>
+        <div class="testimonial-role">MDCAT Student — Mam Adeena</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Mam Adeena, your guidance was like a compass during my MDCAT prep — you broke down tough topics and your simple explanations and lecture plan made my prep so easy. 💪"</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VALUE SECTION -->
+<section class="section-pad value-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3.5rem">
+      <div class="section-label reveal">Complete Toolkit</div>
+      <h2 class="section-title reveal reveal-delay-1">Everything You Need to Succeed</h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="margin:0 auto">One platform, all the tools — no need to scatter across resources.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-card reveal">
+        <div class="value-icon"><i class="fas fa-play-circle"></i></div>
+        <div class="value-title">Topic Wise Videos</div>
+        <div class="value-desc">Concept clarity with expert HD video lectures</div>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-icon"><i class="fas fa-file-pdf"></i></div>
+        <div class="value-title">Smart Notes</div>
+        <div class="value-desc">Exam-focused downloadable PDF notes</div>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-icon"><i class="fas fa-question-circle"></i></div>
+        <div class="value-title">MCQs Bank</div>
+        <div class="value-desc">Chapter-wise MCQs with detailed explanations</div>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-icon"><i class="fas fa-history"></i></div>
+        <div class="value-title">Past Papers</div>
+        <div class="value-desc">Previous year papers with full solutions</div>
+      </div>
+      <div class="value-card reveal reveal-delay-4">
+        <div class="value-icon"><i class="fas fa-chart-bar"></i></div>
+        <div class="value-title">Progress Reports</div>
+        <div class="value-desc">Detailed performance analysis and insights</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">
+          Medverse<span>your dream · our mission</span>
+        </div>
+      </a>
+      <p>Your trusted partner in MDCAT preparation. Study smart, stay confident, and achieve your dream of becoming a doctor.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/14Y3RVJgNng/?mibextid=wwXIfr" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/medverse_pk?igsh=MTZ4ejdieGY4NzV5ZQ%3D%3D&utm_source=qr" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@Medverse-team" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Home</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Courses</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Test Series</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Notes</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> MCQs</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right" style="font-size:0.65rem;color:var(--accent)"></i> Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact">
+        <div class="footer-contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <a href="tel:+923232238602">0323-2238602</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fab fa-whatsapp"></i>
+          <a href="https://wa.me/message/TQMSAXZ572UAO1" target="_blank">WhatsApp Us</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fab fa-youtube"></i>
+          <a href="https://www.youtube.com/@Medverse-team03232238602" target="_blank">YouTube Channel</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fab fa-instagram"></i>
+          <a href="https://www.instagram.com/medverse_pk?igsh=MTZ4ejdieGY4NzV5ZQ%3D%3D&utm_source=qr" target="_blank">@medverse_pk</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Medverse. All rights reserved.</p>
+    <p>Designed with ♥ for Pakistan's future doctors.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
+
+

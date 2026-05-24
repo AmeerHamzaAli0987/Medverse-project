@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test — Medverse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/test.css">
+</head>
+<body class="test-body">
+
+<!-- TEST HEADER -->
+<header class="test-header" id="test-header">
+  <div class="test-header-left">
+    <a href="test-series.html" class="test-back-btn" id="back-btn">
+      <i class="fas fa-arrow-left"></i> Exit Test
+    </a>
+    <div class="test-title-wrap">
+      <div class="test-name" id="test-name">Loading...</div>
+      <div class="test-progress-text" id="progress-text">Q 1 / 20</div>
+    </div>
+  </div>
+  <div class="test-header-right">
+    <div class="test-timer" id="timer">
+      <i class="fas fa-clock"></i>
+      <span id="timer-display">40:00</span>
+    </div>
+    <button class="test-submit-btn" id="submit-btn" onclick="submitTest()">
+      <i class="fas fa-check"></i> Submit Test
+    </button>
+  </div>
+</header>
+
+<!-- PROGRESS BAR -->
+<div class="test-progress-bar">
+  <div class="test-progress-fill" id="progress-fill" style="width:5%"></div>
+</div>
+
+<!-- MAIN TEST AREA -->
+<div class="test-main" id="test-main">
+
+  <!-- QUESTION PANEL -->
+  <div class="test-question-panel" id="question-panel">
+    <div class="test-q-num" id="q-num">Question 1</div>
+    <div class="test-subject-tag" id="q-subject"></div>
+    <div class="test-question-text" id="q-text">Loading question...</div>
+    <div class="test-options" id="q-options"></div>
+    <div class="test-nav-btns">
+      <button class="test-nav-btn" id="prev-btn" onclick="prevQuestion()">
+        <i class="fas fa-chevron-left"></i> Previous
+      </button>
+      <button class="test-nav-btn primary" id="next-btn" onclick="nextQuestion()">
+        Next <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- QUESTION PALETTE -->
+  <div class="test-palette-panel">
+    <div class="test-palette-header">
+      <div class="palette-title">Question Palette</div>
+      <div class="palette-legend">
+        <span class="legend-dot answered"></span> Answered
+        <span class="legend-dot skipped"></span> Skipped
+        <span class="legend-dot unattempted"></span> Not Visited
+      </div>
+    </div>
+    <div class="test-palette" id="test-palette"></div>
+    <div class="palette-stats" id="palette-stats">
+      <div class="pstat"><span id="stat-answered">0</span><p>Answered</p></div>
+      <div class="pstat"><span id="stat-skipped">0</span><p>Skipped</p></div>
+      <div class="pstat"><span id="stat-left">20</span><p>Remaining</p></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- RESULT SCREEN (hidden initially) -->
+<div class="test-result-screen" id="result-screen" style="display:none">
+  <div class="result-card">
+    <div class="result-icon" id="result-icon">🎉</div>
+    <h2 class="result-title" id="result-title">Test Completed!</h2>
+    <div class="result-score-wrap">
+      <div class="result-score" id="result-score">0/20</div>
+      <div class="result-percent" id="result-percent">0%</div>
+    </div>
+    <div class="result-stats-grid">
+      <div class="result-stat correct-stat">
+        <i class="fas fa-check-circle"></i>
+        <span id="res-correct">0</span>
+        <p>Correct</p>
+      </div>
+      <div class="result-stat wrong-stat">
+        <i class="fas fa-times-circle"></i>
+        <span id="res-wrong">0</span>
+        <p>Wrong</p>
+      </div>
+      <div class="result-stat skip-stat">
+        <i class="fas fa-minus-circle"></i>
+        <span id="res-skipped">0</span>
+        <p>Skipped</p>
+      </div>
+      <div class="result-stat time-stat">
+        <i class="fas fa-clock"></i>
+        <span id="res-time">0:00</span>
+        <p>Time Taken</p>
+      </div>
+    </div>
+    <div class="result-message" id="result-message"></div>
+    <div class="result-actions">
+      <button class="result-btn primary" onclick="reviewAnswers()">
+        <i class="fas fa-eye"></i> Review Answers
+      </button>
+      <a href="test-series.html" class="result-btn secondary">
+        <i class="fas fa-redo"></i> Try Another Test
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- REVIEW SCREEN (hidden initially) -->
+<div class="test-review-screen" id="review-screen" style="display:none">
+  <div class="review-header">
+    <h2>Answer Review</h2>
+    <a href="test-series.html" class="result-btn secondary" style="text-decoration:none">
+      <i class="fas fa-arrow-left"></i> Back to Tests
+    </a>
+  </div>
+  <div class="review-list" id="review-list"></div>
+</div>
+
+<script src="js/test.js"></script>
+</body>
+</html>
+
+
+
+
+
