@@ -18,13 +18,22 @@ function saveUsers(users) {
 }
 
 function setCurrentUser(user) {
-  const safe = { email: user.email, fullName: user.fullName, phone: user.phone || '', joinedAt: user.joinedAt };
+  const safe = {
+    email:    user.email,
+    fullName: user.fullName,
+    phone:    user.phone || '',
+    joinedAt: user.joinedAt
+  };
   localStorage.setItem(CURRENT_KEY, JSON.stringify(safe));
 }
 
 function getCurrentUser() {
-  try { return JSON.parse(localStorage.getItem(CURRENT_KEY)); }
-  catch { return null; }
+  try {
+    const raw = localStorage.getItem(CURRENT_KEY);
+    if (!raw) return null;
+    const u = JSON.parse(raw);
+    return (u && u.email) ? u : null;
+  } catch { return null; }
 }
 
 function findUser(email) {
@@ -132,7 +141,9 @@ if (signupForm) {
       saveUsers(users);
       setCurrentUser(newUser);
       showToast('Account created successfully! Redirecting...', 'success');
-      setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect') || 'index';
+      setTimeout(() => { window.location.href = redirect + '.html'; }, 1500);
     }, 900);
   });
 }
@@ -178,7 +189,10 @@ if (loginForm) {
         localStorage.removeItem('mdcat_remembered_email');
       }
       showToast(`Welcome back, ${user.fullName ? user.fullName.split(' ')[0] : 'Student'}!`, 'success');
-      setTimeout(() => { window.location.href = 'index.html'; }, 1400);
+      // Redirect back to courses if came from there, else index
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('redirect') || 'index';
+      setTimeout(() => { window.location.href = redirect + '.html'; }, 1400);
     }, 800);
   });
 

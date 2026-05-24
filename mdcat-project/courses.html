@@ -103,7 +103,7 @@
           </div>
           <div class="course-footer">
             <div class="course-price">PKR 4,999</div>
-            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+            <button class="course-enroll-btn" onclick="openEnrollModal('Biology Full Course', 'PKR 4,999', 'Biology', '36', '42', '3.2K', 'https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?w=600&q=80')">Enroll Now <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
           </div>
           <div class="course-footer">
             <div class="course-price">PKR 4,999</div>
-            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+            <button class="course-enroll-btn" onclick="openEnrollModal('Chemistry Full Course', 'PKR 4,999', 'Chemistry', '34', '38', '2.8K', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80')">Enroll Now <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@
           </div>
           <div class="course-footer">
             <div class="course-price">PKR 4,999</div>
-            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+            <button class="course-enroll-btn" onclick="openEnrollModal('Physics Full Course', 'PKR 4,999', 'Physics', '30', '34', '2.4K', 'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=600&q=80')">Enroll Now <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@
           </div>
           <div class="course-footer">
             <div class="course-price">PKR 2,999</div>
-            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+            <button class="course-enroll-btn" onclick="openEnrollModal('English Complete Course', 'PKR 2,999', 'English', '18', '16', '1.9K', 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&q=80')">Enroll Now <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -195,7 +195,7 @@
           </div>
           <div class="course-footer">
             <div class="course-price">PKR 2,499</div>
-            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+            <button class="course-enroll-btn" onclick="openEnrollModal('Logical Reasoning Course', 'PKR 2,499', 'Logical Reasoning', '14', '12', '1.5K', 'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&q=80')">Enroll Now <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -221,7 +221,7 @@
               <div class="course-price">PKR 3,499</div>
               <div class="course-price-old">PKR 8,999</div>
             </div>
-            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+            <button class="course-enroll-btn" onclick="openEnrollModal('MDCAT Crash Course 2025', 'PKR 3,499', 'Bundle', '20', '22', '4.1K', 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80')">Enroll Now <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -247,7 +247,7 @@
               <div class="course-price">PKR 12,999</div>
               <div class="course-price-old">PKR 20,495</div>
             </div>
-            <a href="signup.html" class="course-enroll-btn">Enroll Now <i class="fas fa-arrow-right"></i></a>
+            <button class="course-enroll-btn" onclick="openEnrollModal('All Subjects Complete Bundle', 'PKR 12,999', 'Bundle', '132', '142', '5.6K', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80')">Enroll Now <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
@@ -305,6 +305,7 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/enroll.js"></script>
 <script>
 // Filter functionality
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -326,6 +327,35 @@ filterBtns.forEach(btn => {
   });
 });
 </script>
+
+<!-- ENROLL MODAL -->
+<div id="enrollModal" class="enroll-overlay" onclick="closeEnrollModal(event)">
+  <div class="enroll-modal">
+    <button class="enroll-close" onclick="closeEnrollModal()"><i class="fas fa-times"></i></button>
+    <div id="enrollStep1">
+      <img id="modalImg" src="" alt="" class="enroll-course-img">
+      <div class="enroll-modal-body">
+        <span id="modalTag" class="enroll-tag"></span>
+        <h2 id="modalTitle"></h2>
+        <div class="enroll-meta">
+          <span><i class="fas fa-play-circle"></i> <span id="modalLessons"></span> Lessons</span>
+          <span><i class="fas fa-clock"></i> <span id="modalHours"></span> Hours</span>
+          <span><i class="fas fa-users"></i> <span id="modalStudents"></span> Students</span>
+        </div>
+        <div class="enroll-price-row">
+          <span class="enroll-price" id="modalPrice"></span>
+          <button class="enroll-confirm-btn" onclick="proceedEnroll()">Confirm Enrollment <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+    <div id="enrollStep2" style="display:none;text-align:center;padding:2rem">
+      <div class="enroll-success-icon"><i class="fas fa-check-circle"></i></div>
+      <h2>Successfully Enrolled!</h2>
+      <p id="enrollSuccessMsg"></p>
+      <button class="enroll-confirm-btn" onclick="closeEnrollModal()" style="margin-top:1rem">Done</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
 
